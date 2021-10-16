@@ -1,0 +1,22 @@
+.login_logo{
+    height: 73px;
+}
+
+.title{
+    position: relative;
+    display: flex;
+    height: 130px;
+    width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.login{
+    position: relative;
+    display: flex;
+    height: 130px;
+    width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}

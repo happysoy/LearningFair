@@ -1,0 +1,49 @@
+.low_logo img {
+  height: 73px;
+}
+
+.banner {
+  height: 160px;
+}
+
+.selection {
+  width: 575px;
+  height: 650px;
+  /* background-color: aqua; */
+  margin: 0 auto;
+}
+
+.selection text-contain {
+  height: 90px;
+}
+
+.selection h1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 44px;
+  text-align: center;
+}
+
+.selection h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 29px;
+  text-align: center;
+}
+
+footer {
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
+  margin: 40px 0 0 0;
+}
+
+.ft {
+  position: relative;
+  display: flex;
+  height: 130px;
+  width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}

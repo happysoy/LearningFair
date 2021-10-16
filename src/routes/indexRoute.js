@@ -6,4 +6,7 @@ module.exports = function(app) {
     app.post('/loginProcess', index.loginProcess);
 
     app.get('/main', index.main);
+
+
+    app.get('/class', index.class);
 }

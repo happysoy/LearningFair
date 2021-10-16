@@ -10,3 +10,7 @@ exports.loginProcess = async function(req, res){
 exports.main = async function (req, res){
     return res.render("main.ejs");
 }
+
+exports.class = async function(req, res){
+    return res.render("main2.ejs");
+}
