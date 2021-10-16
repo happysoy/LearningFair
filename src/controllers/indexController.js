@@ -1,6 +1,7 @@
 const indexDao = require("../dao/indexDao");
 exports.login = async function(req, res){
-    return res.render("login.ejs");
+    let who = req.body.who;
+    return res.render("login.ejs",{who});
 }
 
 exports.loginProcess = async function(req, res){

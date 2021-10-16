@@ -3,10 +3,11 @@ module.exports = function(app) {
 
     app.get('/', index.login);
 
+    app.post('/', index.login);
+    
     app.post('/loginProcess', index.loginProcess);
 
     app.get('/main', index.main);
-
 
     app.get('/class', index.class);
 }
