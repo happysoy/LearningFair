@@ -1,22 +1,122 @@
-.login_logo{
-    height: 73px;
+.login_logo img {
+    height: 120px;
+}
+.login_logo {
+    position: relative;
+    display: flex;
+    height: 130px;
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+    justify-content: center;
+    align-items: center;
 }
 
-.title{
-    position: relative;
-    display: flex;
+/* .login{
+    border-top: 1px solid rgb(0, 0, 0, 0.1);
     height: 130px;
-    width: 1200px;
+    width: 600px;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-}
+} */
 .login{
-    position: relative;
-    display: flex;
+    border-top: 1px solid rgb(0, 0, 0, 0.1);
     height: 130px;
-    width: 1200px;
+    width: 600px;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
+
+}
+.login input {
+    display: block;
+    width: 255px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 5px;
+    border:1px solid rgb(0, 0, 0, 0.5);
+    border-radius: 0.8em;
+  }
+
+  .login button{
+    display: block;
+    width: 265px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 5px;
+    background-color:rgb(111,158,107);
+    color:white;
+    border: none;
+    font-size:16px;
+    font-weight:bold;
+    border-radius: 0.8em;
+  }
+
+.login .select{
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    margin-top:40px;
+    margin-bottom:30px;
+    width:240px;
+    justify-content: space-between;
+
+}
+
+[type="radio"]:checked,[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+
+[type="radio"]:checked + label, [type="radio"]:not(:checked) + label
+{
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border:2px solid #ddd;
+  border-radius: 100%;
+  background: #fff;
+}
+[type="radio"]:checked + label:before {
+  border:2px solid #c4c4c4;
+  border-radius: 100%;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: '';
+  width:9px;
+  height:9px;
+  background: #c4c4c4;
+  position: absolute;
+  top:5px;
+  left:5px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }

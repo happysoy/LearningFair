@@ -12,17 +12,29 @@
         <meta name="author" content="" />
         <title>2021 SKKU Learning Fair</title>
        
-         <!-- jquery -->
-         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <!-- jquery -->
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
          <!-- Login Modal -->
-         <div id="modal"></div>
-         <div class="modal-con login-modal">
-             <p class="title">로그인</p>
+         <a href="" class="login_logo"><img src="/img/login_logo.png" /></a>
+         <div class="login-section">
              <div class="con">
                  <form class="login">
-                 <input type="text" id="department" name="department" placeholder="학과" required="required">
+
+                    <div class="select">
+                        <p class="radio-group">
+                          <input type="radio" id="test2" name="2"  checked="">
+                          <label for="test2">재학생</label>
+                        </p>
+                        <p class="radio-group">
+                          <input type="radio" id="test3" name="2" checked="">
+                          <label for="test3">외부인</label>
+                        </p>
+                      </div>
+
+
                  <input type="text" id="studentId" name="studentId" placeholder="학번" required="required">
+                 <input type="text" id="department" name="department" placeholder="학과" required="required">
                  <input type="text" id="userName" name="userName" placeholder="이름" required="required">
                  <button type="button" id="loginBtn" name="login">시작하기</button>
                  </form>
