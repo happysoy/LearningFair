@@ -1,161 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-  letter-spacing: -0.3px;
-  font-family: Helvetica, "Noto Sans KR", sans-serif;
-
-  color: black;
-}
-
-a {
-  text-decoration: none;
-}
-
-ul,
-li {
-  list-style-type: none;
-  list-style: none;
-}
-
-header {
-  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-}
-
-.hd {
-  position: relative;
-  display: flex;
-  height: 130px;
-  width: 1140px;
-  margin: 0 auto;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo img {
-  height: 80px;
-}
-
-.header .logo {
-  float: left;
-}
-
-.head_text_box {
-  display: flex;
-  height: 130px;
-  width: 312px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-content: space-between;
-}
-
-.welcome {
-  padding: 32px 0 0 0;
-}
-
-.welcome span {
-  font-size: 18px;
-}
-
-.welcome .name {
-  color: #8dc63f;
-}
-
-.category_wrap ul li.cate {
-  float: left;
-  margin: 0 0 0 34px;
-  height: 46px;
-  transition: all 0.3s ease 0s;
-}
-
-.category_wrap .cate a.title {
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0px;
-}
-
-.category li a.title {
-  transition: all 0.3s ease 0s;
-}
-
-.category li a.title:hover,
-.category li.cate:hover a.title {
-  color: #8dc63f;
-}
-
-.category li a:hover {
-  color: #8dc63f;
-  font-weight: bold;
-}
-
-.category .nav-box {
-  position: absolute;
-  top: 130px;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  /* background-color: #8dc63f; */
-  border-top: 1px solid rgb(0, 0, 0, 0.1);
-  z-index: 9;
-  margin: 0 auto;
-  padding: 30px 0 30px 0;
-  display: none;
-  /* display: flex; */
-}
-
-.category li.cate:hover div.nav-box,
-.category .nav-box:hover div.nav-box {
-  display: flex;
-}
-
-.category li.cate:hover,
-.category .nav-box:hover li.cate {
-  height: 42px;
-  border-bottom: 4px solid #8dc63f;
-}
-
-.category .nav-box ul {
-  /* width: 162px; */
-  height: 200;
-  border-right: 1px solid rgb(0, 0, 0, 0.1);
-  /* flex-grow: 1; */
-  flex: 14%;
-}
-
-.nav-box h1 {
-  font-weight: bold;
-  font-size: 16px;
-  text-align: center;
-  margin: 0 0 20px 0;
-}
-
-.nav-box li {
-  font-weight: normal;
-  font-size: 14px;
-  text-align: center;
-  float: center;
-  margin: 10px;
-}
-
-.nav-box li:hover {
-  color: #8dc63f;
-}
-
-footer {
-  border-top: 1px solid rgb(0, 0, 0, 0.1);
-  margin: 40px 0 0 0;
-}
-
-.ft {
-  position: relative;
-  display: flex;
-  height: 130px;
-  width: 1200px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-}
-
 .low_logo img {
   height: 73px;
 }
@@ -189,4 +31,19 @@ footer {
   font-size: 25px;
   line-height: 29px;
   text-align: center;
+}
+
+footer {
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
+  margin: 40px 0 0 0;
+}
+
+.ft {
+  position: relative;
+  display: flex;
+  height: 130px;
+  width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
