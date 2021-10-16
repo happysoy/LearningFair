@@ -4,7 +4,6 @@
   font-weight: normal;
   letter-spacing: -0.3px;
   font-family: Helvetica, "Noto Sans KR", sans-serif;
-
   color: black;
 }
 
@@ -16,6 +15,10 @@ ul,
 li {
   list-style-type: none;
   list-style: none;
+}
+
+button {
+  border: none;
 }
 
 header {
@@ -139,4 +142,19 @@ header {
 
 .nav-box li:hover {
   color: #8dc63f;
+}
+
+footer {
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
+  margin: 40px 0 0 0;
+}
+
+.ft {
+  position: relative;
+  display: flex;
+  height: 130px;
+  width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
