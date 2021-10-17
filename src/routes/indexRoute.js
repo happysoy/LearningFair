@@ -3,7 +3,7 @@ module.exports = function(app) {
 
     app.get('/', index.login);
 
-    app.post('/', index.login);
+    //app.post('/', index.login);
     
     app.post('/loginProcess', index.loginProcess);
 
@@ -12,4 +12,8 @@ module.exports = function(app) {
     app.get('/class/:idx', index.class);
 
     app.get('/hashtag', index.hashtag);
+
+    app.get('/congratulate', index.congratulate);
+
+    app.get('/awards',index.awards);
 }
