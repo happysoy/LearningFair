@@ -25,6 +25,10 @@ button {
 
 header {
   border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0px;
+  background-color: rgb(255, 255, 255);
+  z-index: 11;
 }
 
 .hd {

@@ -69,6 +69,11 @@
   font-size: 25px;
 }
 
+.text-contain .green-text {
+  /* color: #8dc63f; */
+  font-weight: bold;
+}
+
 .btn-wrap {
   width: 370px;
   height: 485px;
