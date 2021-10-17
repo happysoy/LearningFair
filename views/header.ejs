@@ -1,5 +1,5 @@
 <div class="hd">
-  <a href="" class="logo"><img src="/img/logo.png" /></a>
+  <a href="/main" class="logo"><img src="/img/logo.png" /></a>
   <div class="head_text_box">
     <div class="welcome">
       <span class="name">김동호</span>
@@ -7,7 +7,7 @@
     </div>
     <div class="category_wrap">
       <ul class="category">
-        <li class="cate"><a class="title" href="">분반별</a>
+        <li class="cate"><a class="title" href="/main">분반별</a>
           <div class="nav-section">
             <div class="nav-box">
               <ul>
@@ -51,10 +51,16 @@
             </div>
           </div>
         </li>
-        <li class="cate"><a class="title" href="">분야별</a></li>
+        <li class="cate"><a class="title" href="/hashtag">분야별</a></li>
         <li class="cate"><a class="title" href="">축사</a></li>
         <li class="cate"><a class="title" href="">시상식</a></li>
       </ul>
     </div>
   </div>
 </div>
+
+<script>
+  function rendering(value) {
+      location.href = `/class/${value}`;
+  }
+</script>

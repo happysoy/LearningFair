@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link rel="stylesheet" href="/css/login.css" />
+        <link rel="stylesheet" href="/css/layout.css" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>2021 SKKU Learning Fair</title>
+       
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <body>
+         <!-- Login Modal -->
+         <a href="" class="login_logo"><img src="/img/login_logo.png" /></a>
+         <div class="login-section">
+
+             <div class="con">
+                <div class="select" id="select">
+                    <input type="radio" name="who" value="student"id="student" checked="checked"/>
+                    <label for='r1'>재학생</label>
+                    <input type="radio" name="who" value="visitor" id="visitor"/>
+                    <label for='r2'>외부인</label>
+                </div>
+                <div id="student_view" style="display:none;">
+                    <form class="login">
+                        <input type="text" id="userName" name="userName" placeholder="이름" required="required">
+                        <input type="text" id="studentId" name="studentId" placeholder="학번" required="required">
+                        <input type="text" id="department" name="department" placeholder="학과" required="required">
+                        <button type="button" id="loginBtn" name="login">시작하기</button>
+                    </form>
+                </div>
+                <div id="visitor_view" style="display:none;">
+                    <form class="login">
+                        <input type="text" id="userName" name="userName" placeholder="이름" required="required">
+                        <button type="button" id="loginBtn" name="login">시작하기</button>
+                    </form>
+                </div>
+             </div>
+         </div>
+
+    </head>
+    </body>
+    <script>
+        $('input[type="radio"][id="student"]').prop("checked", function(){
+            $('#student_view').css('display','block');
+        })
+        $(function (){
+            $('input[type="radio"][id="student"]').on('click', function(){
+                var chkValue = $('input[type=radio][id="student"]:checked').val();
+                if(chkValue == 'student'){
+                            $('#student_view').css('display','block');
+                            $('#visitor_view').css('display','none');
+                }else{
+                            $('#student_view').css('display','none');
+                }
+            
+            });
+            $('input[type="radio"][id="visitor"]').on('click', function(){
+                var chkValue = $('input[type=radio][id="visitor"]:checked').val();
+                if(chkValue == 'visitor'){
+                            $('#visitor_view').css('display','block');
+                            $('#student_view').css('display','none');
+                }else{
+                            $('#visitor_view').css('display','none');
+                }
+            
+            });
+        });
+    </script>
+    <script src="/js/login.js"></script>
+    </body>
+</html>
