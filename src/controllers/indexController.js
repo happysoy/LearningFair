@@ -13,5 +13,10 @@ exports.main = async function (req, res){
 }
 
 exports.class = async function(req, res){
-    return res.render("main2.ejs");
+    var selectClass = req.params.idx;
+    return res.render("class.ejs",{selectClass});
+}
+
+exports.hashtag = async function (req, res){
+    return res.render("hashtag.ejs");
 }
