@@ -1,20 +1,13 @@
 const indexDao = require("../dao/indexDao");
 const db=require('../../config/mysql');
 exports.login = async function(req, res){
+    console.log('who');
     return res.render("login.ejs");
 }
 
 exports.loginProcess = async function(req, res){
     var userData=req.body;
     console.log(userData);
-    if(userData.checkValue=='visitor'){
-        if(userData.userName.length<2){
-            console.log(userData.userName);
-            var data={status:400};//대충 지정함
-            return res.send(data);
-            
-        }
-    }
     if(userData.userName.length<2 || userData.studentId.length<2 || userData.department.length<1){
         var data={status:400};//대충 지정함
         return res.send(data);

@@ -1,5 +1,5 @@
+const index = require("../controllers/indexController");
 module.exports = function(app) {
-    const index = require("../controllers/indexController");
 
     app.get('/', index.login);
 
