@@ -1,49 +1,106 @@
-.low_logo img {
-  height: 73px;
-}
-
 .banner {
-  height: 160px;
+  position: relative;
+  width: 100%;
+  height: 400px;
 }
 
-.selection {
-  width: 575px;
-  height: 650px;
-  /* background-color: aqua; */
+.banner img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.banner button {
+  position: absolute;
+  z-index: 8;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  /* background: rgba(255, 255, 255, 0.5); */
+  background: transparent;
+  font-size: 0px;
+  color: transparent;
+}
+
+.banner button:before {
+  font-family: "xeicon";
+  color: #8dc63f;
+  /* color: rgba(0, 0, 0, 0.5); */
+  font-size: 50px;
+}
+
+.banner button.slick-prev {
+  left: 30px;
+}
+
+.banner button.slick-prev:before {
+  /* content: "\e93b"; */
+  content: "\e93d";
+}
+
+.banner button.slick-next {
+  right: 30px;
+}
+
+.banner button.slick-next:before {
+  /* content: "\e93e"; */
+  content: "\e940";
+}
+
+.cantainer {
+  height: 820px;
+  display: flex;
+  align-items: center;
+}
+
+.selection-box {
   margin: 0 auto;
 }
 
-.selection text-contain {
-  height: 90px;
-}
-
-.selection h1 {
-  font-style: normal;
+.text-contain h1 {
   font-weight: bold;
   font-size: 38px;
-  line-height: 44px;
-  text-align: center;
 }
 
-.selection h2 {
-  font-style: normal;
+.text-contain h2 {
   font-weight: 500;
   font-size: 25px;
-  line-height: 29px;
-  text-align: center;
 }
 
-footer {
-  border-top: 1px solid rgb(0, 0, 0, 0.1);
-  margin: 40px 0 0 0;
+.text-contain .green-text {
+  /* color: #8dc63f; */
+  font-weight: bold;
 }
 
-.ft {
-  position: relative;
+.btn-wrap {
+  width: 370px;
+  height: 485px;
   display: flex;
-  height: 130px;
-  width: 1200px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 60px auto 0;
+}
+
+.btn-wrap button {
+  width: 75px;
+  height: 75px;
+  background: #8dc63f;
+  opacity: 0.5;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 35px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 11px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-wrap button:hover {
+  opacity: 1;
+  box-shadow: inset 0px 11px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-wrap button#twofour {
+  width: 100%;
 }
