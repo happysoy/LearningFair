@@ -1,7 +1,6 @@
 const express = require('express');
 const compression = require('compression');
 
-
 module.exports = function () {
     const app = express();
     app.use(compression());
