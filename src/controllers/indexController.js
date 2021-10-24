@@ -1,5 +1,6 @@
 const indexDao = require("../dao/indexDao");
-const db=require('../../config/mysql');
+const db=require('../../config/database');
+
 exports.login = async function(req, res){
     console.log('who');
     return res.render("login.ejs");
@@ -12,8 +13,8 @@ exports.loginProcess = async function(req, res){
         var data={status:400};//대충 지정함
         return res.send(data);
     }
-    const query= 'INSERT INTO user (user_name, user_num, user_major) VALUES (?,?,?)';
-    db.query(query,[userData.userName,userData.studentId,userData.department],(err,result)=>{
+    const query= 'INSERT INTO user (user_id, user_major, user_num, user_name, login_time) VALUES (?,?,?,?,?)';
+    db.query(query,[1,userData.department,userData.studentId, userData.userName,1111],(err,result)=>{
         if (err) throw err;
         var data={status:200};
         return res.send(data);

@@ -1,6 +1,6 @@
 const express = require('express');
 const compression = require('compression');
-
+const { DB_CONFIG } = require("./database");
 module.exports = function () {
     const app = express();
     app.use(compression());
