@@ -10,63 +10,66 @@
 </head>
 <body>
   <div class="hd">
-    <a href="/main" class="logo"><img src="/img/logo.png" /></a>
-    <div class="head_text_box">
-      <div class="welcome">
-        <span class="name">유지니</span>
-        <span>님, 안녕하세요!</span>
-      </div>
-      <div class="category_wrap">
-        <ul class="category">
-          <li class="cate"><a class="title" href="">분반별</a>
-            <div class="nav-section">
-              <div class="nav-box">
-                <ul>
-                  <h1>인문과학</h1>
-                  <%for(var i=1;i<4;i++){%>
-                    <li><a href="javascript:rendering('I<%=i%>')">I<%=i%>분반</a></li>
-                  <%}%>
-                </ul>
-                <ul>
-                  <h1>사회과학</h1>
-                  <%for(var i=4;i<7;i++){%>
-                    <li><a href="javascript:rendering('I<%=i%>')">I<%=i%>분반</a></li>
-                  <%}%>
-                </ul>
-                <ul>
-                  <h1>자연과학</h1>
-                  <%for(var i=7;i<10;i++){%>
-                    <li><a href="javascript:rendering('I<%=i%>')"">I<%=i%>분반</a></li>
-                  <%}%>
-                </ul>
-                <ul>
-                  <h1>글로벌, 경영</h1>
-                  <li><a href="javascript:rendering('IB')">IB분반</a></li>
-                  <li><a href="javascript:rendering('IC')">IC분반</a></li>
-                  <li><a href="javascript:rendering('ID')">ID분반</a></li>
-                </ul>
-                <ul>
-                  <h1>사범, 글융,</br>영상, 의상</h1>
-                  <li><a href="javascript:rendering('IE')">IE분반</a></li>
-                  <li><a href="javascript:rendering('IF')">IF분반</a></li>
-                </ul>
-                <ul>
-                  <h1>예술, 스포츠과학</h1>
-                  <li><a href="javascript:rendering('IG')">IG분반</a></li>
-                  <li><a href="javascript:rendering('IH')">IH분반</a></li>
-                </ul>
-                <ul>
-                  <h1>2-4학년</h1>
-                  <li><a href="javascript:rendering('GEDT015-I1')"">GEDT015-I1분반</a></li>
-                </ul>
-              </div>
+    <a href="/main" class="logo"><img src="/img/logo(최종) re-resize.png" /></a>
+    <!-- <div class="head_text_box"> -->
+    <div class="category_wrap">
+      <ul class="category">
+        <li class="cate"><a class="title" href="">축사</a></li>
+        <li class="cate" id="cate-nav"><a class="title" href="">분반별</a>
+          <div class="nav-section">
+            <div class="nav-box">
+              <ul>
+                <h1>인문과학</h1>
+                <%for(var i=1;i<4;i++){%>
+                  <li><a href="javascript:rendering('I<%=i%>')">I<%=i%>분반</a></li>
+                <%}%>
+              </ul>
+              <ul>
+                <h1>사회과학</h1>
+                <%for(var i=4;i<7;i++){%>
+                  <li><a href="javascript:rendering('I<%=i%>')">I<%=i%>분반</a></li>
+                <%}%>
+              </ul>
+              <ul>
+                <h1>자연과학</h1>
+                <%for(var i=7;i<10;i++){%>
+                  <li><a href="javascript:rendering('I<%=i%>')"">I<%=i%>분반</a></li>
+                <%}%>
+              </ul>
+              <ul>
+                <h1>글로벌, 경영</h1>
+                <li><a href="javascript:rendering('IB')">IB분반</a></li>
+                <li><a href="javascript:rendering('IC')">IC분반</a></li>
+                <li><a href="javascript:rendering('ID')">ID분반</a></li>
+              </ul>
+              <ul>
+                <h1>사범, 글융,</br>영상, 의상</h1>
+                <li><a href="javascript:rendering('IE')">IE분반</a></li>
+                <li><a href="javascript:rendering('IF')">IF분반</a></li>
+              </ul>
+              <ul>
+                <h1>예술, 스포츠과학</h1>
+                <li><a href="javascript:rendering('IG')">IG분반</a></li>
+                <li><a href="javascript:rendering('IH')">IH분반</a></li>
+              </ul>
+              <ul>
+                <h1>2-4학년</h1>
+                <li><a href="javascript:rendering('GEDT015-I1')"">GEDT015-I1분반</a></li>
+              </ul>
             </div>
-          </li>
-          <li class="cate"><a class="title" href="/hashtag">분야별</a></li>
-          <li class="cate"><a class="title" href="">축사</a></li>
-          <li class="cate"><a class="title" href="">시상식</a></li>
-        </ul>
-      </div>
+          </div>
+        </li>
+        <li class="cate"><a class="title" href="">시상식</a></li>
+        <li class="cate" id="rocket"><img src="/img/rocket.png" alt=""><a class="title" href="">
+          탐험하기</a></li>
+      </ul>
+    </div>  
+    
+    <div class="welcome">
+      <span class="name">유지니</span>
+      <span>님, 안녕하세요!</span>
+    </div>
+    <!-- </div> -->
   </div>
   
   <script>
