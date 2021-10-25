@@ -74,8 +74,7 @@
   /* color: #8dc63f; */
   /* font-weight: bold; */
   text-decoration: underline;
-
-
+}
 
 #wordCloud {
   width: 800px;
@@ -84,9 +83,7 @@
   transition: all 0.3s;
 }
 
-#wordCloud:hover {
+/* #wordCloud:hover {
   width: 800px;
   height: 800px;
-
-}
-
+} */
