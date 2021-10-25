@@ -1,0 +1,22 @@
+.top {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-contain {
+  margin: 30px 0;
+}
+
+.text-contain h1 {
+  font-weight: bold;
+  font-size: 38px;
+  text-align: center;
+}
+
+.text-contain h2 {
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
