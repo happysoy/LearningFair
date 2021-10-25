@@ -17,7 +17,7 @@ module.exports = function(app) {
     app.get('/team/:idx/:idx', index.team);
 
     app.get('/congratulate', index.congratulate);
+  
     app.get('/awards',index.awards);
 
-    
 }

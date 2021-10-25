@@ -12,7 +12,11 @@
     <meta name="author" content="" />
     <title>Team</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+    
+    
   </head>
   <body>
     <header>
@@ -28,8 +32,10 @@
             <h1>[햄복어] 햄버거 칼로리 계산기</h1>
             <h2>김동호 김보민 방건우 정소연 하유진</h2>
           </div>
-          <button id="button1" onclick="button1_click('like');">
-              <i class="xi-heart-o"> 1200</i>
+          <button id="button1" onclick="toggleConfetti();">
+              <i class="like old-class"> 1200</i>
+              <!-- <i class="xi-heart-o">\ea11</i>
+              <i class="xi-heart">\ea10</i> -->
           </button>
         </div>
       </div>
@@ -45,10 +51,20 @@
       <%-include ('footer.ejs')%>
     </footer>
 
-    <script>
-      function button1_click(s) {
-        console.log( s + " 버튼을 누르셨습니다.");
-      }
+    <script src="/js/confetti.js"></script>
+    <script> 
+      var click = 0;
+      $("#button1").click(function() {
+        if (!click){
+          click = 1;
+          $(".like").removeClass('old-class').addClass('new-class');
+        }
+        else{
+          click = 0;
+          $(".like").removeClass('new-class').addClass('old-class')
+        }
+
+      });
     </script>
   </body>
 </html>

@@ -93,6 +93,7 @@ exports.class = async function(req, res){
     
     return res.render("class.ejs",{nickname, selectClass, projectList, objLength, addList, add2List});
 }
+
 exports.team = async function(req, res){
     const nickname = req.session.name;
     var selectTeam = req.params.idx;
@@ -102,9 +103,7 @@ exports.team = async function(req, res){
 
 exports.hashtag = async function (req, res){
     const nickname = req.session.name;
-    var selectHashtag = req.params.idx;
-    console.log("해시태그 선택", selectHashtag);
-    return res.render("hashtagProject.ejs", {nickname,selectHashtag});
+    return res.render("hashtag.ejs", {nickname});
 }
 
 exports.congratulate = async function (req, res){
