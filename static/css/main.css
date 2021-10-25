@@ -83,7 +83,9 @@
   transition: all 0.3s;
 }
 
-/* #wordCloud:hover {
+#wordCloud:hover {
   width: 800px;
   height: 800px;
-} */
+
+}
+

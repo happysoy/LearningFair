@@ -22,14 +22,14 @@
 
       <div class="top">
         <div class="text-contain">
-          <h1><%= selectClass %> 분반</h1></br>
+          <h1># <%= selectHashtag %></h1></br>
           <h2>관심이 가는 프로젝트를 선택해 보세요</h2>
         </div>
       </div>
 
       <div class="project_wrap">
         <% for (var i=1;i<=10;i++){%><!--  여기 10개로 설정했으나 프로젝트 개수 연결 필요 -->
-          <a href="/team/I<%= selectClass %>/<%= i %>">
+          <a href="/team/I/<%= i %>">
           <div class="project_box">
             <!-- <div class="project_con"> -->
               <div class="thumbnail">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="hashtag_wrap">
                   <span>#tag</span></br>
-                  <span><%= selectClass %></span>
+                  <span>class</span>
                 </div>
               </div>
             <!-- </div> -->
