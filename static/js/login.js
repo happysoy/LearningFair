@@ -34,10 +34,10 @@ $(document).ready(async function() {
                 "checkValue":$('input[name=who]:checked').val()
             },
                 
-            error: function(data){
+            error: async function(data){
                 alert("다시 시도해주세요3");
             },
-            success:function(data){
+            success:async function(data){
                 const obj = JSON.parse(data);
                 //const msg = document.getElementById("errormsg");
                 if(obj.status == 200){
