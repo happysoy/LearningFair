@@ -22,35 +22,33 @@
 
       <div class="top">
         <div class="text-contain">
-          <h1><%= selectClass %> 분반</h1></br>
+          <h1>모든 프로젝트를 모아놓은 페이지</h1></br>
           <h2>관심이 가는 프로젝트를 선택해 보세요</h2>
         </div>
       </div>
 
       <div class="project_wrap">
-
-        <% projectList.forEach(function(list, index){ %>
-          <a href="/team/<%= selectClass %>/<%= 1 %>">
-            <div class="project_box">
-              <!-- <div class="project_con"> -->
-                <div class="thumbnail">
-                  <img src="/img/1.png" alt="" />
+        <% for (var i=1;i<=10;i++){%><!--  여기 10개로 설정했으나 프로젝트 개수 연결 필요 -->
+          <a href="/team/I/<%= i %>">
+          <div class="project_box">
+            <!-- <div class="project_con"> -->
+              <div class="thumbnail">
+                <img src="/img/1.png" alt="" />
+              </div>
+              <div class="project_text">
+                <div class="title_wrap">
+                  <h1>[team_name] project_name</h1>
+                  <h2>student_name</h2>
                 </div>
-                <div class="project_text">
-                 <p>[<%= list.team_name %>] <%= list.project_name %></p>
-                 <% addList.forEach(listname => { %>
-                    <% if (listname.project_id == index+1) { %>
-                      <p><%= listname.name %></p>
-                    <% } %>
-                <% }) %>
-
+                <div class="hashtag_wrap">
+                  <span>#tag</span></br>
+                  <span>class</span>
                 </div>
-              <!-- </div> -->
-            </div>
-            </a>
-
-        <% } ) %>
-      
+              </div>
+            <!-- </div> -->
+          </div>
+          </a>
+        <%}%>
       </div>
         
 

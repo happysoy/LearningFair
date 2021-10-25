@@ -77,7 +77,9 @@ exports.team = async function(req, res){
 
 exports.hashtag = async function (req, res){
     const nickname = req.session.name;
-    return res.render("hashtag.ejs", {nickname});
+    var selectHashtag = req.params.idx;
+    console.log("해시태그 선택", selectHashtag);
+    return res.render("hashtagProject.ejs", {nickname,selectHashtag});
 }
 
 exports.congratulate = async function (req, res){
@@ -88,4 +90,15 @@ exports.congratulate = async function (req, res){
 exports.awards = async function (req, res){
     const nickname = req.session.name;
     return res.render("awards.ejs", {nickname});
+}
+
+exports.top50Project = async function (req, res){
+    const nickname = req.session.name;
+    return res.render("top50Project.ejs", {nickname});
+}
+
+
+exports.allProject = async function (req, res){
+    const nickname = req.session.name;
+    return res.render("allProject.ejs", {nickname});
 }
