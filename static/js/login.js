@@ -10,15 +10,28 @@ $(document).ready(async function() {
                 "checkValue":$('input[name=who]:checked').val()
             }, 
             error: function(){
-                alert("다시 시도해주세요1");
+                alert("에러가 발생했습니다");
             },
             success:function(data){
                 const obj = JSON.parse(data);
+                const msgId = document.getElementById("errormsgId");
+                const msgDp = document.getElementById("errormsgDp");
+                const msgName = document.getElementById("errormsgName");
                 if(obj.status == 200){
                     window.location.href = "/main";
-                }else if(obj.status==400){
-                    console.log(data);
-                    alert("다시 시도해주세요2");
+                }else if(obj.status ==201){
+                    console.log("야");
+                    msgName.innerText="이름을 다시 입력해주세요";
+                    msgDp.innerText="";
+                    msgId.innerText="";
+                }else if(obj.status == 202){
+                    msgId.innerText = "학번을 다시 입력해주세요";
+                    msgName.innerText="";
+                    msgDp.innerText="";
+                }else if(obj.status ==203){
+                    msgDp.innerText="학과를 다시 입력해주세요";
+                    msgName.innerText="";
+                    msgId.innerText="";
                 }
             }
         });
@@ -35,16 +48,16 @@ $(document).ready(async function() {
             },
                 
             error: async function(data){
-                alert("다시 시도해주세요3");
+                alert("에러가 발생했습니다");
             },
             success:async function(data){
                 const obj = JSON.parse(data);
-                //const msg = document.getElementById("errormsg");
+                const msgName = document.getElementById("errormsgName2");
                 if(obj.status == 200){
                     window.location.href = "/main";
-                }else if(obj.status==400){
-                    console.log(data);
-                    alert("다시 시도해주세요4");
+                }else if(obj.status==201){
+                    msgName.innerText = "이름을 다시 입력해 주세요";
+                    
                 }
             }
         });

@@ -31,7 +31,18 @@
     border:1px solid rgb(0, 0, 0, 0.5);
     border-radius: 0.8em;
   }
-
+#errormsgName{
+  color: red;
+}
+#errormsgName2{
+  color: red;
+}
+#errormsgId{
+  color: red;
+}
+#errormsgDp{
+  color: red;
+}
 .login button{
   display: block;
   width: 265px;
@@ -51,8 +62,8 @@
     position: relative;
     display: flex;
     margin: 0 auto;
-    margin-top:40px;
-    margin-bottom:30px;
+    margin-top:50px;
+    margin-bottom:40px;
     width:250px;
     right:-8px;
     justify-content: space-between;
