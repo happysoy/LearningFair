@@ -6,7 +6,7 @@
 }
 
 .top-box {
-  height: 150px;
+  height: 145px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -21,7 +21,7 @@
 
 .text_wrap h1 {
   font-size: 30px;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -31,7 +31,7 @@
 
 button {
   height: 27px;
-  width: 80px;
+  width: 65px;
   border-radius: 5px;
 }
 
