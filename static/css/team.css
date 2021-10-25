@@ -1,0 +1,41 @@
+.top {
+  width: 1140px;
+  height: 160px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.top-box {
+  height: 145px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.text_wrap p {
+  font-size: 16px;
+  margin-bottom: 7px;
+  /* color: #072a60; */
+  font-weight: bold;
+}
+
+.text_wrap h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.text_wrap h2 {
+  font-size: 15px;
+}
+
+button {
+  height: 27px;
+  width: 65px;
+  border-radius: 5px;
+}
+
+.contents iframe {
+  display: block;
+  margin: 50px auto;
+}
