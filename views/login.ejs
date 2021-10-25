@@ -29,14 +29,18 @@
                 <div id="student_view" style="display:block;">
                     <form class="login">
                         <input type="text" id="userName1" name="userName" placeholder="이름" required="required">
-                        <input type="text" id="studentId1" name="studentId" placeholder="학번" required="required">
+                        <p id="errormsgName"></p>
+                        <input type="text" id="studentId1" name="studentId" placeholder="학번" required="required"> 
+                        <p id="errormsgId"></p>
                         <input type="text" id="department1" name="department" placeholder="학과" required="required">
+                        <p id="errormsgDp"></p>
                         <button type="button" id="loginBtn1" name="login">시작하기</button>
                     </form>
                 </div>
                 <div id="visitor_view" style="display:none;">
                     <form class="login">
                         <input type="text" id="userName2" name="userName" placeholder="이름" required="required">
+                        <p id="errormsgName2"></p>
                         <button type="button"  id="loginBtn2" name="login">시작하기</button>
                     </form>
                 </div>

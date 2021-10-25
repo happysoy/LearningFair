@@ -9,7 +9,7 @@ module.exports = function(app) {
 
     app.get('/class/:idx', index.class);
 
-    app.get('/class/team/:idx', index.team);
+    app.get('/team/:idx/:idx', index.team);
 
     app.get('/hashtag', index.hashtag);
 
