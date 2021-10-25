@@ -28,6 +28,10 @@ exports.class = async function(req, res){
     var selectClass = req.params.idx;
     return res.render("class.ejs",{selectClass});
 }
+exports.team = async function(req, res){
+    var selectTeam = req.params.idx;
+    return res.render("team.ejs",{selectTeam});
+}
 
 exports.hashtag = async function (req, res){
     return res.render("hashtag.ejs");
