@@ -62,11 +62,13 @@
 .text-contain h1 {
   font-weight: bold;
   font-size: 38px;
+  text-align: center;
 }
 
 .text-contain h2 {
   font-weight: 500;
   font-size: 25px;
+  text-align: center;
 }
 
 .text-contain .green-text {
@@ -103,4 +105,9 @@
 
 .btn-wrap button#twofour {
   width: 100%;
+}
+
+#wordCloud {
+  width: 100px;
+  height: 100px;
 }
