@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+
    $("#wordCloud").jQWCloud({
       words: [
          {word: '코로나', weight: 40},
