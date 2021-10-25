@@ -33,7 +33,7 @@ header {
 .hd {
   position: relative;
   display: flex;
-  height: 130px;
+  height: 100px;
   width: 1140px;
   margin: 0 auto;
   justify-content: space-between;
@@ -48,38 +48,50 @@ header {
   float: left;
 }
 
-.head_text_box {
+/* .head_text_box {
   display: flex;
   height: 130px;
   width: 312px;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-content: space-between;
-}
+} */
 
-.welcome {
+/* .welcome {
   padding: 32px 0 0 0;
-}
+} */
 
 .welcome span {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .welcome .name {
-  color: #8dc63f;
+  color: #072a60;
+  font-weight: bold;
+}
+
+.category_wrap ul.category {
+  width: 380px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .category_wrap ul li.cate {
-  float: left;
-  margin: 0 0 0 34px;
-  height: 46px;
+  /* position: absolute; */
+  /* float: left; */
+  /* margin: 0 0 0 34px; */
+  height: 100px;
   transition: all 0.3s ease 0s;
+  display: flex;
+  align-items: center;
 }
 
 .category_wrap .cate a.title {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   letter-spacing: 0px;
+  color: #545454;
+  transition: all 0.3s ease 0s;
 }
 
 .category li a.title {
@@ -98,7 +110,7 @@ header {
 
 .nav-section {
   position: absolute;
-  top: 130px;
+  top: 100px;
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
@@ -121,9 +133,9 @@ header {
   display: block;
 }
 
-.category li.cate:hover,
-.category .nav-box:hover li.cate {
-  height: 42px;
+.category li#cate-nav:hover,
+.category .nav-box:hover li#cate-nav {
+  height: 96px;
   border-bottom: 4px solid #8dc63f;
 }
 
@@ -170,5 +182,20 @@ footer {
 }
 
 .low_logo img {
-  height: 73px;
+  height: 65px;
+}
+
+#rocket img {
+  width: 0px;
+  margin-right: 5px;
+  transition: all 0.3s;
+}
+
+#rocket a {
+  font-weight: bold;
+  color: #ff6c0f;
+}
+
+#rocket:hover img {
+  width: 22px;
 }
