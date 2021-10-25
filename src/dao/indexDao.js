@@ -1,17 +1,5 @@
 const { pool } = require("../../config/database");
 
-// if(userData.userName.length<2 || userData.studentId.length<2 || userData.department.length<1){
-//     var data={status:400};//대충 지정함
-//     return res.send(data);
-// }
-// const query= 'INSERT INTO user (user_id, user_major, user_num, user_name, login_time) VALUES (?,?,?,?,?)';
-// db.query(query,[1,userData.department,userData.studentId, userData.userName,1111],(err,result)=>{
-//     if (err) throw err;
-//     var data={status:200};
-//     return res.send(data);
-// });
-
-//user_id, user_major, user_num, user_name
 async function checkVisitor(userMajor, userNum, userName){
     try{
         const connection = await pool.getConnection(async (conn)=> conn);
@@ -34,7 +22,64 @@ async function checkVisitor(userMajor, userNum, userName){
     }
 }
 
-module.exports = {
-    checkVisitor
+async function getProjects(selectClass){
+    try{
+        const connection = await pool.getConnection(async (conn)=> conn);
+        try{
+            const Query = `SELECT project_id, team_name, project_name FROM team WHERE class_name=?;`;
+            const Params = [selectClass];
+            const [rows] = await connection.query(Query, Params);
+            connection.release();
+            return [rows];
+        }catch(err){
+            console.log('Query Error',err);
+            connection.release();
+            return false;
+        }
+       
+    }
+    catch(err){
+        console.log('DB Error');
+		return false;
+    }
+}
+async function getHashtags(project_id){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`select hashtag_name from hashtag INNER join hashtag_team on hashtag.hashtag_id=hashtag_team.hashtag_id where project_id=?;`;
+    const Params =[project_id];
+    const [rows] = await connection.query(Query, Params);
+    connection.release();
+    return [rows];
+}
 
+async function classTeam(project_id){
+    try{
+        const connection = await pool.getConnection(async (conn)=> conn);
+        try{
+            const Query=`SELECT student_name FROM member WHERE project_id=?;`;
+            const Params=[project_id];
+            const [rows] = await connection.query(Query, Params);
+            connection.release();
+            return [rows];
+        }catch(err){
+            console.log('Query Error',err);
+            connection.release();
+            return false;
+        }
+    }
+    catch(err){
+        console.log('DB Error');
+		return false;
+    }
+}
+async function addTeam(name){
+    console.log(name);
+    
+}
+module.exports = {
+    checkVisitor,
+    getProjects,
+    getHashtags,
+    classTeam,
+    addTeam
 }

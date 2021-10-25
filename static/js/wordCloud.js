@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+
 	$("#wordCloud").jQWCloud({
 		words: [
 			{word: '코로나', weight: 40},
@@ -79,4 +80,6 @@ $(document).ready(function()
 				console.log("Cloud Completed in "+(date2.getTime()-date1.getTime()) +" milliseconds");
 			}
 	});
+
 });
+
