@@ -17,5 +17,4 @@ module.exports = function(app) {
 
     app.get('/awards',index.awards);
 
-
 }

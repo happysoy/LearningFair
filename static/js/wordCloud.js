@@ -69,7 +69,7 @@ $(document).ready(function()
 			$(this).css("text-decoration","none");
 		},
 		word_click: function(){ 			
-			alert("You have selected:" +$(this).text());
+			location.href = "/class/"+$(this).text();
 		},
 		beforeCloudRender: function(){
 		       date1=new Date();
@@ -79,5 +79,4 @@ $(document).ready(function()
 				console.log("Cloud Completed in "+(date2.getTime()-date1.getTime()) +" milliseconds");
 			}
 	});
-	
 });

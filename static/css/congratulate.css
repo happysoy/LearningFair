@@ -1,0 +1,30 @@
+.top {
+  height: 180px;
+  width: 1140px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 auto;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.text_wrap {
+  margin: 30px 0;
+}
+
+.text_wrap h1 {
+  font-weight: bold;
+  font-size: 38px;
+  text-align: center;
+}
+
+.content {
+  margin: 30px auto;
+  width: 1140px;
+}
+
+.content h2 {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}

@@ -51,6 +51,7 @@ exports.class = async function(req, res){
     console.log("분반 선택", selectClass);
     return res.render("class.ejs",{nickname, selectClass});
 }
+
 exports.team = async function(req, res){
     const nickname = req.session.name;
     var selectTeam = req.params.idx;
