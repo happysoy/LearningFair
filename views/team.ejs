@@ -28,17 +28,15 @@
         <div class="top-box">
           <div class="text_wrap">
             <p>#칼로리 #햄버거 #계산기 #헬창 #운동</p>
-            <h1>[햄복어] 햄버거 칼로리 계산기</h1>
+            <h1>[<%= team.team_name>] <%= team.project_name></h1>
             <h2>김동호 김보민 방건우 정소연 하유진</h2>
           </div>
-          <button id="button1" onclick="toggleConfetti();">
-              <i class="like"> 1200</i>
-              <!-- <i class="xi-heart-o"> 1200</i> -->
-              <!-- <i class="xi-heart-o">\ea11</i>
-              <i class="xi-heart">\ea10</i> -->
+          <button id="button1" onclick="button1_click('like');">
+              <i class="xi-heart-o">  <%= team.good ></i>
           </button>
         </div>
       </div>
+
 
       <div class="contents">
           <iframe width="800" height="450" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/1/1/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.mp4" frameborder="0" allowfullscreen></iframe>

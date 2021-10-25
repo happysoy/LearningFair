@@ -124,6 +124,31 @@ async function hashtagProject(selectHashtag){
 }
 
 
+// async function getProject(selectTeam){
+//     try{
+//         const connection = await pool.getConnection(async (conn)=> conn);
+//         try{
+//             const Query = `SELECT t.project_id, t.team_name, t.project_name, t.class_name, group_concat(distinct h.hashtag_name seperator ' #') from team t inner join hashtag_team ht on ht.project_id=t.project_id inner join hashtag h on h.hashtag_id=ht.hashtag_id where h.hashtag_name=?;`;
+//             const [rows] = await connection.query(Query,[selectHashtag]);
+//             connection.release();
+//             console.log(rows);
+//             return [rows];
+//         }catch(err){
+//             console.log('Query Error',err);
+//             connection.release();
+//             return false;
+//         }
+       
+//     }
+//     catch(err){
+//         console.log('DB Error');
+// 		return false;
+//     }
+// }
+
+
+
+
 module.exports = {
     checkVisitor,
     getProjects,
@@ -131,5 +156,6 @@ module.exports = {
     addTeam,
     getTop50Projects,
     getAllProjects,
-    hashtagProject
+    hashtagProject,
+    getProject
 }
