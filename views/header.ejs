@@ -13,7 +13,7 @@
     <!-- <div class="head_text_box"> -->
     <div class="category_wrap">
       <ul class="category">
-        <li class="cate"><a class="title" href="">축사</a></li>
+        <li class="cate"><a class="title" href="/congratulate">축사</a></li>
         <li class="cate" id="cate-nav"><a class="title" href="">분반별</a>
           <div class="nav-section">
             <div class="nav-box">
@@ -53,19 +53,19 @@
               </ul>
               <ul>
                 <h1>2-4학년</h1>
-                <li><a href="javascript:rendering('GEDT015-I1')"">GEDT015-I1분반</a></li>
+                <li><a href="javascript:rendering('GEDT015-I1')">GEDT015-I1분반</a></li>
               </ul>
             </div>
           </div>
         </li>
-        <li class="cate"><a class="title" href="">시상식</a></li>
-        <li class="cate" id="rocket"><img src="/img/rocket.png" alt=""><a class="title" href="">
+        <li class="cate"><a class="title" href="/awards">시상식</a></li>
+        <li class="cate" id="rocket"><img src="/img/rocket.png" alt=""><a class="title" href="javascript:random_gogo()">
           탐험하기</a></li>
       </ul>
     </div>  
     
     <div class="welcome">
-      <span class="name">유지니</span>
+      <span class="name"><%= nickname %></span>
       <span>님, 안녕하세요!</span>
     </div>
     <!-- </div> -->
@@ -73,7 +73,35 @@
   
   <script>
     function rendering(value) {
-        location.href = `/class/${value}`;
+      location.href = `/class/${value}`;
+    }
+    function getRandomInt(min,max){
+      min=Math.ceil(min);
+      max=Math.floor(max);
+      return Math.floor(Math.random()*(max-min))+min;
+    }
+    function random_gogo(){
+      var arr=[{class:'I1',num:5},
+              {class:'I2',num:7},
+              {class:'I3',num:33},
+              {class:'I4',num:11},
+              {class:'I5',num:34},
+              {class:'I6',num:20},
+              {class:'I7',num:40},
+              {class:'I8',num:12},
+              {class:'I9',num:21},
+              {class:'IB',num:12},
+              {class:'IC',num:33},
+              {class:'ID',num:9},
+              {class:'IE',num:17},
+              {class:'IF',num:51},
+              {class:'IG',num:20},
+              {class:'IH',num:85},
+              {class:'GEDT015-I1',num:12}]
+      var temp_class = getRandomInt(0, 17);
+      var random_team = getRandomInt(1,arr[temp_class].num+1);
+      var random_class = arr[temp_class].class;
+      location.href = `/team/${random_class}/${random_team}`;
     }
   </script>
 </body>
