@@ -65,10 +65,7 @@
     </div>  
     
     <div class="welcome">
-
       <span class="name"><%= nickname %></span>
-
-
       <span>님, 안녕하세요!</span>
     </div>
     <!-- </div> -->
@@ -84,24 +81,8 @@
       return Math.floor(Math.random()*(max-min))+min;
     }
     function random_gogo(){
-      var arr=[{class:'I1',num:5},
-              {class:'I2',num:7},
-              {class:'I3',num:33},
-              {class:'I4',num:11},
-              {class:'I5',num:34},
-              {class:'I6',num:20},
-              {class:'I7',num:40},
-              {class:'I8',num:12},
-              {class:'I9',num:21},
-              {class:'IB',num:12},
-              {class:'IC',num:33},
-              {class:'ID',num:9},
-              {class:'IE',num:17},
-              {class:'IF',num:51},
-              {class:'IG',num:20},
-              {class:'IH',num:85},
-              {class:'GEDT015-I1',num:12}]
-      var temp_class = getRandomInt(0, 17);
+      var arr=[{class:'I1',num:5},{class:'I2',num:7},{class:'I3',num:12}]
+      var temp_class = getRandomInt(0, 3);
       var random_team = getRandomInt(1,arr[temp_class].num+1);
       var random_class = arr[temp_class].class;
       location.href = `/team/${random_class}/${random_team}`;
