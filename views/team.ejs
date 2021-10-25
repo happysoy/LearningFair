@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
     
     
   </head>
@@ -32,8 +33,7 @@
             <h2>김동호 김보민 방건우 정소연 하유진</h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
-              <i class="like"> 1200</i>
-              <!-- <i class="xi-heart-o"> 1200</i> -->
+              <i class="like old-class"> 1200</i>
               <!-- <i class="xi-heart-o">\ea11</i>
               <i class="xi-heart">\ea10</i> -->
           </button>
@@ -57,11 +57,11 @@
       $("#button1").click(function() {
         if (!click){
           click = 1;
-          $("#button1").addClass('button-clicked');
+          $(".like").removeClass('old-class').addClass('new-class');
         }
         else{
           click = 0;
-          $("#button1").removeClass('button-clicked');
+          $(".like").removeClass('new-class').addClass('old-class')
         }
 
       });
