@@ -15,11 +15,15 @@
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-mysql-session": "^2.1.7",
+    "express-session": "^1.17.2",
     "jquery": "^3.6.0",
     "js": "^0.1.0",
     "jsdom": "^17.0.0",
+    "mysql2": "^2.3.2",
     "request": "^2.88.2",
-    "requests": "^0.3.0"
+    "requests": "^0.3.0",
+    "session": "^0.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
