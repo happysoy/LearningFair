@@ -49,7 +49,24 @@ exports.class = async function(req, res){
     const nickname = req.session.name;
     var selectClass = req.params.idx;
     console.log("분반 선택", selectClass);
-    return res.render("class.ejs",{nickname, selectClass});
+    // 분반별 팀 조회
+
+    const [classProjects] = await indexDao.getProjects(selectClass);
+    var objLength = Object.keys(classProjects).length;
+    var projectList = [];
+    var memberList =[];
+    var addList = [];
+    for(var i=0; i<objLength; i++){
+        projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
+        const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
+        var objLengthMember = Object.keys(projectMembers).length;
+        for(var j=0; j<objLengthMember; j++){
+            memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
+            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id});
+        }
+    }
+    
+    return res.render("class.ejs",{nickname, selectClass, projectList, objLength, addList});
 }
 exports.team = async function(req, res){
     const nickname = req.session.name;

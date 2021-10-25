@@ -25,11 +25,6 @@
       src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
 
-
-    <style>
-      div#wordCloud{margin:150px auto 50px auto; background-color: aqua;}
-    </style>
-
   </head>
   <body>
     <header>
@@ -47,10 +42,11 @@
         <div class="selection-box">
           <div class="text-contain">
             <h1>멋진 프로젝트를 구경해봅시다!</h1></br>
-            <h2>관심이 가는 <span class="green-text">#해시태그</span>를 선택해 보세요</h2>
+            <h2>관심이 가는 <span class="green-text">분야</span>를 선택해 보세요</h2>
           </div>
-          <div class="btn-wrap">
-           
+
+          <div class="hashtag-wrap">
+            <%-include ('hashtag.ejs')%>
           </div>
         </div>
       </section>
