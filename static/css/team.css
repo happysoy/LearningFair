@@ -35,7 +35,29 @@ button {
   border-radius: 5px;
 }
 
+button:hover {
+  background-color: pink;
+}
+
+#button1 i.like:before {
+  content: "\ea11";
+  font-family: "xeicon";
+}
+
+.button-clicked {
+  color: red;
+}
+
 .contents iframe {
   display: block;
   margin: 50px auto;
 }
+
+canvas {
+  position: absolute;
+  top: 0;
+}
+
+/* .button1 i {
+  color: red;
+} */

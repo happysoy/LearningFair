@@ -19,5 +19,4 @@ module.exports = function(app) {
     app.get('/congratulate', index.congratulate);
     app.get('/awards',index.awards);
 
-    
 }

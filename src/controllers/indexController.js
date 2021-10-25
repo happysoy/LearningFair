@@ -68,6 +68,7 @@ exports.class = async function(req, res){
     
     return res.render("class.ejs",{nickname, selectClass, projectList, objLength, addList});
 }
+
 exports.team = async function(req, res){
     const nickname = req.session.name;
     var selectTeam = req.params.idx;

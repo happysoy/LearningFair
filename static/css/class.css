@@ -1,8 +1,11 @@
 .top {
-  height: 200px;
+  height: 180px;
+  width: 1140px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  margin: 0 auto;
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .text-contain {
@@ -25,6 +28,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .project_box {
