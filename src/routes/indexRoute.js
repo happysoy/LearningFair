@@ -12,8 +12,10 @@ module.exports = function(app) {
     app.get('/team/:idx/:idx', index.team);
 
     app.get('/hashtag', index.hashtag);
-
+    
     app.get('/congratulate', index.congratulate);
 
     app.get('/awards',index.awards);
+
+
 }

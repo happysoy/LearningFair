@@ -25,8 +25,6 @@
       src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
 
-    <script type="text/javascript" src="/Plugin/jQWCloudv3.4.1.js"></script>
-    <script type="text/javascript" src="/static/js/word_cloud.js"></script>
 
     <style>
       div#wordCloud{margin:150px auto 50px auto; background-color: aqua;}
@@ -35,7 +33,7 @@
   </head>
   <body>
     <header>
-      <%-include ('header.ejs') %>
+      <%-include ('header.ejs')%>
     </header>
 
     <div class="body">
@@ -52,13 +50,7 @@
             <h2>관심이 가는 <span class="green-text">#해시태그</span>를 선택해 보세요</h2>
           </div>
           <div class="btn-wrap">
-            <% for(var i = 66; i < 73; i++){ %>
-              <button type="button" onclick = "location.href = '/class/<%= i %>' ">I<%= String.fromCharCode(i) %></button>
-             <% } %>
-             <% for(var i = 1; i < 10; i++){ %>
-              <button type="button" onclick = "location.href = '/class/<%= i %>' ">I<%= i %></button>
-             <% } %>
-             <button id="twofour" type="button" onclick = "location.href = '/class/GEDT015-I1' ">GEDT015-I1</button>
+           
           </div>
         </div>
       </section>
