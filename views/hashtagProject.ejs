@@ -26,32 +26,38 @@
           <h2>관심이 가는 프로젝트를 선택해보세요</h2>
         </div>
       </div>
-
       <div class="project_wrap">
-
+         
         <% projectList.forEach(function(list, index){ %>
           <a href="/team/<%= list.class_name %>/<%= index+1 %>">
             <div class="project_box">
-              <!-- <div class="project_con"> -->
-                <div class="thumbnail">
-                  <img src="/img/1.png" alt="" />
-                </div>
+              <div class="thumbnail">
+                <img src="/img/1.png" alt="" />
+              </div>
+              <div class="project_con">
                 <div class="project_text">
-                 <p>[<%= list.team_name %>] <%= list.project_name %></p>
+                 <h1>[<%= list.team_name %>] <%= list.project_name %></h1>
                  <% addList.forEach(listname => { %>
-                    <% if (listname.project_id == index+1) { %>
-                      <p><%= listname.name %></p>
+                  <% if (listname.project_id == index+1) { %>
+                    <span><%= listname.name %></span>
+                  <% } %>
+                  <% }) %>
+                </div>
+                <div class="hashtag_wrap">
+                  <% add2List.forEach(list2name => { %>
+                    <% if (list2name.project_id == index+1) { %>
+                      <span>#<%= list2name.hashtag %></span>
                     <% } %>
                 <% }) %>
-
-                </div>
-              <!-- </div> -->
+                </div>      
+              </div>
             </div>
             </a>
 
         <% } ) %>
       
       </div>
+        
         
 
     </div>

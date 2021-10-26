@@ -189,7 +189,7 @@ exports.allProject = async function (req, res){
 exports.good = async function(req, res){
     
     var userData=req.body;
-    console.log("user",userData);
+    console.log(userData);
     let status = -1;
     const loginResult = await indexDao.plusGood(userData);
     const data = {"status": 200};
