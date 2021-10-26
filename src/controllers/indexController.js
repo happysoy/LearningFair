@@ -50,23 +50,48 @@ exports.class = async function(req, res){
     var selectClass = req.params.idx;
     console.log("분반 선택", selectClass);
     // 분반별 팀 조회
-
     const [classProjects] = await indexDao.getProjects(selectClass);
+    console.log(classProjects);
     var objLength = Object.keys(classProjects).length;
     var projectList = [];
     var memberList =[];
     var addList = [];
+    var add2List = [];
+    var hashtagList = [];
+    let start;
+  
+    if(selectClass == 'I1'){
+        start=0;
+    }else if(selectClass =='I2'){
+        start=4;
+    }else if(selectClass =='I3'){
+        start=7;
+    } //keyByValue
+
+
     for(var i=0; i<objLength; i++){
         projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
         const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
+        const [findHashtag] = await indexDao.getHashtags(projectList[i].project_id);
+        //console.log(findHashtag);
         var objLengthMember = Object.keys(projectMembers).length;
+        var objLengthHashtag = Object.keys(findHashtag).length;
+        //console.log(objLengthHashtag);
         for(var j=0; j<objLengthMember; j++){
             memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
-            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id});
+            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id-start});
         }
+        for(var k=0; k<objLengthHashtag; k++){
+            hashtagList[k] = JSON.parse(JSON.stringify(findHashtag))[k];
+            add2List.push({project_id: projectList[i].project_id-start, hashtag: hashtagList[k].hashtag_name});
+            
+        }
+       
     }
+    console.log(hashtagList);
+    //console.log(add2List);
     
-    return res.render("class.ejs",{nickname, selectClass, projectList, objLength, addList});
+    return res.render("class.ejs",{nickname, selectClass, projectList, objLength, addList, add2List});
 }
 exports.team = async function(req, res){
     const nickname = req.session.name;
@@ -74,8 +99,8 @@ exports.team = async function(req, res){
     console.log("팀 선택", selectTeam);
 
     const [team] = await indexDao.getProject(selectTeam);
-
-    return res.render("team.ejs",{nickname, selectTeam,team});
+    console.log(Object.values(team[0]));
+    return res.render("team.ejs",{nickname, selectTeam, team});
 }
 
 
@@ -156,4 +181,17 @@ exports.allProject = async function (req, res){
     }
     
     return res.render("allProject.ejs", {nickname, projectList, objLength, addList});
+}
+
+
+
+
+exports.good = async function(req, res){
+    
+    var userData=req.body;
+    console.log("user",userData);
+    let status = -1;
+    const loginResult = await indexDao.plusGood(userData);
+    const data = {"status": 200};
+    res.send(data);
 }

@@ -40,13 +40,23 @@ button:hover {
 }
 
 #button1 i.like:before {
+  font-family: "xeicon";
+}
+
+.old-class:before {
   content: "\ea11";
   font-family: "xeicon";
 }
 
-.button-clicked {
+.new-class:before {
+  content: "\ea10";
   color: red;
 }
+
+/* .button-clicked {
+  content: "\ea10";
+  color: red;
+} */
 
 .contents iframe {
   display: block;
