@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   
     <meta charset="utf-8">
     <meta
       name="viewport"
@@ -14,9 +15,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-    
-    
   </head>
   <body>
     <header>
@@ -29,7 +27,7 @@
         <div class="top-box">
           <div class="text_wrap">
             <p>#칼로리 #햄버거 #계산기 #헬창 #운동</p>
-            <h1>[햄복어] 햄버거 칼로리 계산기</h1>
+            <h1>[ <%= selectTeam %>] <%=selectProject %></h1>
             <h2>김동호 김보민 방건우 정소연 하유진</h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
@@ -50,7 +48,9 @@
     <footer>
       <%-include ('footer.ejs')%>
     </footer>
-
+    <script>
+       
+    </script>
     <script src="/js/confetti.js"></script>
     <script> 
       var click = 0;

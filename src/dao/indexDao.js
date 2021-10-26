@@ -56,7 +56,7 @@ async function classTeam(project_id){
     try{
         const connection = await pool.getConnection(async (conn)=> conn);
         try{
-            const Query=`SELECT student_name FROM member WHERE project_id=?;`;
+            const Query=`SELECT student_name,class_id FROM member WHERE project_id=?;`;
             const Params=[project_id];
             const [rows] = await connection.query(Query, Params);
             connection.release();
@@ -76,10 +76,41 @@ async function addTeam(name){
     console.log(name);
     
 }
+
+async function hashtagProject(selectHashtag){
+    try{
+        const connection = await pool.getConnection(async (conn)=> conn);
+        try{
+            const Query = `SELECT t.project_id, t.team_name, t.project_name, t.class_name, h.hashtag_name from team t inner join hashtag_team ht on ht.project_id=t.project_id inner join hashtag h on h.hashtag_id=ht.hashtag_id where h.hashtag_name=?;`;
+            const [rows] = await connection.query(Query,[selectHashtag]);
+            connection.release();
+            console.log(rows);
+            return [rows];
+        }catch(err){
+            console.log('Query Error',err);
+            connection.release();
+            return false;
+        }
+       
+    }
+    catch(err){
+        console.log('DB Error');
+		return false;
+    }
+}
+async function specificTeam(selectTeam){
+    // const connection = await pool.getConnection(async (conn)=> conn);
+    // const Query=`SELECT `;
+    // const Params=[selectTeam];
+    // const [rows] = await connection.query(Query,Params);
+    // connection.release();
+}
 module.exports = {
     checkVisitor,
     getProjects,
     getHashtags,
     classTeam,
-    addTeam
+    addTeam,
+    hashtagProject,
+    specificTeam
 }

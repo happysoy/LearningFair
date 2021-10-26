@@ -11,6 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Class</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
   </head>
   <body>
@@ -30,17 +31,19 @@
       <div class="project_wrap">
          
         <% projectList.forEach(function(list, index){ %>
-          <a href="/team/<%= selectClass %>/<%= index+1 %>">
+          <a href="/team/<%= selectClass%>/<%= index+1%>/team=<%=list.team_name%>
+            /project=<%= list.project_name %>">
             <div class="project_box">
               <div class="thumbnail">
                 <img src="/img/1.png" alt="" />
               </div>
               <div class="project_con">
-                <div class="project_text">
+                <div class="project_text" id="project_text">
                  <h1>[<%= list.team_name %>] <%= list.project_name %></h1>
                  <% addList.forEach(listname => { %>
                   <% if (listname.project_id == index+1) { %>
-                    <span><%= listname.name %></span>
+                    <span><%= listname.name %>(<%=listname.class%>)</span>
+           
                   <% } %>
                   <% }) %>
                 </div>
@@ -64,8 +67,29 @@
     <footer>
       <%-include ('footer.ejs')%>
     </footer>
-
     <script>
+     
+      // function movePage(select, idx){
+      //   $.ajax({
+      //     type:'POST',
+      //     dataType:'text',  
+      //     url:`/team/${select}/${idx}`,
+      //     data:{
+      //       "class":"2020",
+      //     },
+      //     error: function(){
+      //           alert("에러가 발생했습니다");
+      //       },
+      //     success:function(data){
+      //       console.log(data);
+      //       res.send(data);
+      //       window.location.href=`/team/${select}/${idx}`; 
+            
+      //     }
+
+      //   });
+    
+
     </script>
   </body>
 </html>

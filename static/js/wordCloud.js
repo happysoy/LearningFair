@@ -70,7 +70,7 @@ $(document).ready(function()
 			$(this).css("text-decoration","none");
 		},
 		word_click: function(){ 			
-			location.href = "/class/"+$(this).text();
+			location.href = "/hashtag/"+$(this).text();
 		},
 		beforeCloudRender: function(){
 		       date1=new Date();
