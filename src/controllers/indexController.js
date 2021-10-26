@@ -55,6 +55,7 @@ exports.class = async function(req, res){
     const arrTeamTitle=[];
     const arrTags=[];
     const refineData =[];
+    const thumbnail_url=[];
     const [getClass] = await indexDao.getClass(selectClass);
     const classes = JSON.parse(JSON.stringify(getClass));
     const arrClass = classes[0].eachClass.split(',');
@@ -69,8 +70,15 @@ exports.class = async function(req, res){
         tagList[i] = JSON.parse(JSON.stringify(getInfo));
         arrTags[i] = tagList[i][0].hashtags.split(',');
         arrMembers[i] = projectList[i][0].eachTeam.split(',');
-        refineData.push({id: projectList[i][0].project_id, team:arrTeamTitle[i][0].team_name, title:arrTeamTitle[i][0].project_name, member: arrMembers[i], tags: arrTags[i]});
+        const [thumbnail_data] = await indexDao.getDatas(arrClass[i]);
+        thumbnail_url[i]=JSON.parse(JSON.stringify(thumbnail_data));
+        refineData.push({id: projectList[i][0].project_id, team:arrTeamTitle[i][0].team_name, title:arrTeamTitle[i][0].project_name, member: arrMembers[i], tags: arrTags[i], thumbnail:thumbnail_url[i][0].thumbnail_url});
     }
+   
+    
+        
+
+  
     
     //console.log(refineData);
     return res.render("class.ejs",{nickname,selectClass, refineData});
@@ -78,12 +86,15 @@ exports.class = async function(req, res){
 
 exports.team = async function(req, res){
     const params = req.params;
+    const idx = params.idx;
     const nickname = req.session.name;
-    const title = params.title;
-    const name = params.name;
-    const member = params.member;
-    const tags = params.tags;
-    return res.render("team.ejs",{nickname, title,name, member, tags });
+    const arrInfo=[];
+    const arrDatas=[];
+    arrInfo.push(params.title, params.name,params.member, params.tags);
+    const [getDatas] = await indexDao.getDatas(idx);
+    arrDatas.push(JSON.parse(JSON.stringify(getDatas)));
+  
+    return res.render("team.ejs",{nickname, arrInfo, arrDatas});
 }
 
 exports.hashtag = async function (req, res){

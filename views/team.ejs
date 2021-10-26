@@ -26,9 +26,9 @@
       <div class="top">
         <div class="top-box">
           <div class="text_wrap">
-            <p><%= tags %></p>
-            <h1>[ <%= name %>] <%= title %></h1>
-            <h2><%= member %></h2>
+            <p><%= arrInfo[3] %></p>
+            <h1>[ <%= arrInfo[1] %> ] <%= arrInfo[0] %></h1>
+            <h2><%= arrInfo[2] %></h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
               <i class="like old-class"> 1200</i>
@@ -39,9 +39,9 @@
       </div>
 
       <div class="contents">
-          <iframe width="800" height="450" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/1/1/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.mp4" frameborder="0" allowfullscreen></iframe>
-          <iframe width="800" height="600" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/1/1/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.pdf" frameborder="0"></iframe>
-      </div>
+        <iframe width="800" height="450" src=<%= arrDatas[0][0].video_url %> frameborder="0" allowfullscreen></iframe>
+        <iframe width="800" height="600" src=<%= arrDatas[0][0].pdf_url %> frameborder="0"></iframe>
+    </div>
 
     </div>
 

@@ -88,6 +88,14 @@ async function hashtagProject(selectHashtag){
 		return false;
     }
 }
+async function getDatas(idx){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`SELECT video_url, pdf_url,thumbnail_url FROM file WHERE project_id=? ;`
+    const Params =[idx];
+    const [rows] = await connection.query(Query, Params);
+    connection.release();
+    return [rows];
+}
 
 module.exports = {
     checkVisitor,
@@ -97,4 +105,5 @@ module.exports = {
     getHashtags,
     groupTeam,
     hashtagProject,
+    getDatas
 }
