@@ -18,9 +18,8 @@ $(document).ready(async function() {
                 const msgDp = document.getElementById("errormsgDp");
                 const msgName = document.getElementById("errormsgName");
                 if(obj.status == 200){
-                    window.location.href = "/main";
+                    window.location.replace("/main");
                 }else if(obj.status ==201){
-                    console.log("야");
                     msgName.innerText="이름을 다시 입력해주세요";
                     msgDp.innerText="";
                     msgId.innerText="";
@@ -54,7 +53,7 @@ $(document).ready(async function() {
                 const obj = JSON.parse(data);
                 const msgName = document.getElementById("errormsgName2");
                 if(obj.status == 200){
-                    window.location.href = "/main";
+                    window.location.replace("/main");
                 }else if(obj.status==201){
                     msgName.innerText = "이름을 다시 입력해 주세요";
                     
