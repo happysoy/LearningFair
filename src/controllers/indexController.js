@@ -49,60 +49,41 @@ exports.class = async function(req, res){
     const nickname = req.session.name;
     var selectClass = req.params.idx;
     console.log("분반 선택", selectClass);
-    // 분반별 팀 조회
-    const [classProjects] = await indexDao.getProjects(selectClass);
-    //console.log(classProjects);
-    var objLength = Object.keys(classProjects).length;
-    var projectList = [];
-    var memberList =[];
-    var addList = [];
-    var add2List = [];
-    var hashtagList = [];
-    let start;
-  
-    if(selectClass == 'I1'){
-        start=0;
-    }else if(selectClass =='I2'){
-        start=4;
-    }else if(selectClass =='I3'){
-        start=7;
-    } //keyByValue
-
-
-    for(var i=0; i<objLength; i++){
-        projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
-        const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
-        const [findHashtag] = await indexDao.getHashtags(projectList[i].project_id);
-        //console.log(findHashtag);
-        var objLengthMember = Object.keys(projectMembers).length;
-        var objLengthHashtag = Object.keys(findHashtag).length;
-        //console.log(objLengthHashtag);
-        for(var j=0; j<objLengthMember; j++){
-            memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
-            addList.push({project_id: projectList[i].project_id-start,name: memberList[j].student_name, class:memberList[j].class_id});
-        }
-        for(var k=0; k<objLengthHashtag; k++){
-            hashtagList[k] = JSON.parse(JSON.stringify(findHashtag))[k];
-            add2List.push({project_id: projectList[i].project_id-start, hashtag: hashtagList[k].hashtag_name});
-            
-        }
-       
+    const projectList=[];
+    const tagList=[];
+    const arrMembers=[];
+    const arrTeamTitle=[];
+    const arrTags=[];
+    const refineData =[];
+    const [getClass] = await indexDao.getClass(selectClass);
+    const classes = JSON.parse(JSON.stringify(getClass));
+    const arrClass = classes[0].eachClass.split(',');
+    //console.log(arrClass); class_id
+    for(var i=0; i< arrClass.length; i++){
+        const [getTeam] = await indexDao.getTeam(arrClass[i]); //팀별 이름
+        
+        const [getTeamTitle] = await indexDao.getTeamTitle(arrClass[i]);//팀명, 프로젝트이름
+        arrTeamTitle[i] = JSON.parse(JSON.stringify(getTeamTitle));
+        const [getInfo] = await indexDao.getHashtags(arrClass[i]); //팀별 해시태그
+        projectList[i] = JSON.parse(JSON.stringify(getTeam)); //학생(분반)은 여기서 처리하면 됨
+        tagList[i] = JSON.parse(JSON.stringify(getInfo));
+        arrTags[i] = tagList[i][0].hashtags.split(',');
+        arrMembers[i] = projectList[i][0].eachTeam.split(',');
+        refineData.push({id: projectList[i][0].project_id, team:arrTeamTitle[i][0].team_name, title:arrTeamTitle[i][0].project_name, member: arrMembers[i], tags: arrTags[i]});
     }
-
-    return res.render("class.ejs",{nickname, selectClass, projectList, objLength, addList, add2List});
+    
+    //console.log(refineData);
+    return res.render("class.ejs",{nickname,selectClass, refineData});
 }
 
 exports.team = async function(req, res){
-
-    console.log("params", req.params);
+    const params = req.params;
     const nickname = req.session.name;
-
-    var selectProject = req.params.project;
-    var selectTeam = req.params.team;
-    console.log("프로젝트 이름", selectProject);
-    console.log("팀 이름", selectTeam);
-    //const specificTeam = await indexDao.specificTeam(selectTeam);
-    return res.render("team.ejs",{nickname, selectProject, selectTeam });
+    const title = params.title;
+    const name = params.name;
+    const member = params.member;
+    const tags = params.tags;
+    return res.render("team.ejs",{nickname, title,name, member, tags });
 }
 
 exports.hashtag = async function (req, res){
