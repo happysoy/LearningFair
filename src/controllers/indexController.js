@@ -10,10 +10,11 @@ exports.loginProcess = async function(req, res){
     var userMajor = userData.department;
     var userNum = userData.studentId;
     var userName = userData.userName;
-    const check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    const ko_check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
+    const en_check = /[a-zA-Z]/;;
 
     let status = -1;
-    if(userName.length ==1 || !check.test(userName) ){//이름 잘못 입력
+    if(userName.length ==1 || ((!ko_check.test(userName) && (!en_check.test(userName)))) ){//이름 잘못 입력
         status=201;
         const data = {status};
         res.send(data);
@@ -23,7 +24,7 @@ exports.loginProcess = async function(req, res){
         const data = {status};
         res.send(data);
     }
-    else if(userMajor.length==1 || !check.test(userMajor)){ //학과 잘못 입력
+    else if(userMajor.length==1 || ((!ko_check.test(userMajor) && (!en_check.test(userMajor))))){ //학과 잘못 입력
         status=203;
         const data = {status};
         res.send(data);
@@ -70,7 +71,6 @@ exports.team = async function(req, res){
     const [refineData] = await indexDao.refineDataDetail(selectTeam);
     refineList = JSON.parse(JSON.stringify(refineData));
     const result = refineList[0];
-    console.log(result);
     return res.render("team.ejs",{nickname, selectTeam,result});
 }
 

@@ -21,6 +21,8 @@ async function checkVisitor(userMajor, userNum, userName){
 		return false;
     }
 }
+
+
 async function classList(selectClass){
     const connection = await pool.getConnection(async (conn)=> conn);
     const Query=`SELECT GROUP_CONCAT(DISTINCT project_id) AS 'eachClass' FROM member WHERE class_name=?`;
@@ -63,10 +65,11 @@ async function refineDataDetail(selectTeam){ //팀별 상세페이지
 
 async function plusGood(userData){
     const connection = await pool.getConnection(async (conn)=> conn);
+    console.log(typeof(userData.project_id));
     const project_id=userData.project_id*1;
+    console.log(typeof(userData.project_id));
     const Query=`Update team Set good = good + 1 Where project_id=?`;
     const Params=[project_id];
-    
     const rows=await connection.query(Query, Params);
     connection.release();
     return [rows];
