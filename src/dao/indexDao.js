@@ -30,6 +30,7 @@ async function classList(selectClass){
     return [rows];
 
 }
+
 async function refineData(selectTeam){ //분반 상세페이지
     const connection = await pool.getConnection(async (conn)=> conn);
     const Query=`SELECT t.project_id, group_concat(distinct concat(m.student_name, '(', m.class_name, ')') separator ', ') AS 'eachMembers',
@@ -62,7 +63,6 @@ async function refineDataDetail(selectTeam){ //팀별 상세페이지
     return [rows];
 }
 
-
 async function getClass(project_id){
     const connection = await pool.getConnection(async (conn)=> conn);
     const Query=`select class_name from member where project_id=?  LIMIT 1`;
@@ -71,7 +71,6 @@ async function getClass(project_id){
     connection.release();
     return [rows];
 }
-
 async function plusGood(userData){
     const connection = await pool.getConnection(async (conn)=> conn);
     const project_id=userData.project_id*1;
@@ -82,7 +81,6 @@ async function plusGood(userData){
     return [rows];
 
 }
-
 async function minusGood(userData){
     const connection = await pool.getConnection(async (conn)=> conn);
     const project_id=userData.project_id*1;
@@ -94,7 +92,6 @@ async function minusGood(userData){
     return [rows];
 
 }
-
 async function getTop50Projects(){
     const connection = await pool.getConnection(async (conn)=> conn);
     const Query=`SELECT row_number() over (order by good desc), GROUP_CONCAT(DISTINCT project_id) AS 'eachClass' FROM team WHERE good limit 3`;
@@ -103,7 +100,6 @@ async function getTop50Projects(){
     return [rows];
 
 }
-
 async function getAllProjects(){
     const connection = await pool.getConnection(async (conn)=> conn);
     const Query=`SELECT GROUP_CONCAT(DISTINCT project_id) AS 'eachClass' FROM member`;
@@ -111,6 +107,18 @@ async function getAllProjects(){
     connection.release();
     return [rows];
 
+}
+async function getHashtagClass(hashtag_name){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`SELECT GROUP_CONCAT(DISTINCT m.project_id) AS 'eachClass' from member m
+        inner join team t on m.project_id=t.project_id
+        inner join hashtag_team ht on ht.project_id=t.project_id
+        inner join hashtag h on h.hashtag_id=ht.hashtag_id
+        where h.hashtag_name=?`;
+    const Params=[hashtag_name];
+    const [rows] = await connection.query(Query,Params);
+    connection.release();
+    return [rows];
 }
 
 module.exports = {
@@ -120,6 +128,7 @@ module.exports = {
     refineDataDetail,
     getTop50Projects,
     getAllProjects,
+    getHashtagClass,
     getClass,
     plusGood,
     minusGood
