@@ -15,7 +15,11 @@ module.exports = function(app) {
     //랜덤페이지 상세 페이지
     app.get('/allProject',index.allProject);
     //팀별 상세 페이지
-    app.get('/team/:class/:idx/', index.team);
+    app.get('/team/:class/:idx', index.team);
+    //조아여
+    app.post('/good',index.good);
+    //시러여
+    app.post('/bad',index.bad);
     //축사 페이지
     app.get('/congratulate', index.congratulate);
     //시상식 페이지

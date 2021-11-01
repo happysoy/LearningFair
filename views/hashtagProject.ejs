@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/layout.css" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Class</title>
+    <title>Top 50</title>
 
   </head>
   <body>
@@ -23,33 +23,41 @@
       <div class="top">
         <div class="text-contain">
           <h1># <%= selectHashtag %></h1></br>
-          <h2>관심이 가는 프로젝트를 선택해 보세요</h2>
+          <h2>관심이 가는 프로젝트를 선택해보세요</h2>
         </div>
       </div>
-
       <div class="project_wrap">
-        <% for (var i=1;i<=10;i++){%><!--  여기 10개로 설정했으나 프로젝트 개수 연결 필요 -->
-          <a href="/team/I/<%= i %>">
-          <div class="project_box">
-            <!-- <div class="project_con"> -->
+         
+        <% projectList.forEach(function(list, index){ %>
+          <a href="/team/<%= list.class_name %>/<%= index+1 %>">
+            <div class="project_box">
               <div class="thumbnail">
                 <img src="/img/1.png" alt="" />
               </div>
-              <div class="project_text">
-                <div class="title_wrap">
-                  <h1>[team_name] project_name</h1>
-                  <h2>student_name</h2>
+              <div class="project_con">
+                <div class="project_text">
+                 <h1>[<%= list.team_name %>] <%= list.project_name %></h1>
+                 <% addList.forEach(listname => { %>
+                  <% if (listname.project_id == index+1) { %>
+                    <span><%= listname.name %></span>
+                  <% } %>
+                  <% }) %>
                 </div>
                 <div class="hashtag_wrap">
-                  <span>#tag</span></br>
-                  <span>class</span>
-                </div>
+                  <% add2List.forEach(list2name => { %>
+                    <% if (list2name.project_id == index+1) { %>
+                      <span>#<%= list2name.hashtag %></span>
+                    <% } %>
+                <% }) %>
+                </div>      
               </div>
-            <!-- </div> -->
-          </div>
-          </a>
-        <%}%>
+            </div>
+            </a>
+
+        <% } ) %>
+      
       </div>
+        
         
 
     </div>
