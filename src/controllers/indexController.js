@@ -48,7 +48,6 @@ exports.main = async function (req, res){
 exports.class = async function(req, res){
     const nickname = req.session.name;
     var selectClass = req.params.idx;
-    console.log("분반 선택", selectClass);
 
     const refineList=[];
     const resultList=[];
@@ -60,48 +59,25 @@ exports.class = async function(req, res){
         const [refineData] = await indexDao.refineData(idList[i]);
         refineList[i] = JSON.parse(JSON.stringify(refineData));
         let info = refineList[i][0];
-        console.log(info.eachMembers);
-        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, member: info.eachMembers, tags: info.hashtag_name, thumbnail: info.thumbnail_url});
+
+        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, tags: info.hashtag_name, members: info.eachMembers, thumbnail: info.thumbnail_url});
     }
-//project_id, eachMembers, team_name, project_name, class_name, good, hashtag_name, video_url, pdf_url
     return res.render("class.ejs", {nickname, selectClass, resultList});
 }
 exports.team = async function(req, res){
     const nickname = req.session.name;
     var selectTeam = req.params.idx;
-    console.log("팀 선택", selectTeam);
-    const [refineData] = await indexDao.refineData(selectTeam);
+    const [refineData] = await indexDao.refineDataDetail(selectTeam);
     refineList = JSON.parse(JSON.stringify(refineData));
-    console.log( refineList[0].project_id);
-    console.log( refineList[0].eachMembers);
     const result = refineList[0];
-    //resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, member: info.eachMembers, tags: info.hashtag_name, thumbnail: info.thumbnail_url, pdf: info.pdf_url, video: info.video_url});
-
+    console.log(result);
     return res.render("team.ejs",{nickname, selectTeam,result});
 }
 
 
 exports.hashtag = async function (req, res){
-    const nickname = req.session.name;
-    var selectHashtag = req.params.idx;
-    console.log("해시태그 선택", selectHashtag);
 
-    //const [classProjects] = await indexDao.hashtagProject(selectHashtag);
-    var objLength = Object.keys(classProjects).length;
-    var projectList = [];
-    var memberList =[];
-    var addList = [];
-    for(var i=0; i<objLength; i++){
-        projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
-        const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
-        var objLengthMember = Object.keys(projectMembers).length;
-        console.log(projectList);
-        for(var j=0; j<objLengthMember; j++){
-            memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
-            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id});
-        }
-    }
-    return res.render("hashtagProject.ejs",{nickname, selectHashtag, addList});
+    return res.render("hashtagProject.ejs",{nickname});
 }
 exports.congratulate = async function (req, res){
     const nickname = req.session.name;
