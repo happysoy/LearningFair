@@ -30,15 +30,27 @@ async function classList(selectClass){
     return [rows];
 
 }
-async function refineData(selectTeam){
+async function refineData(selectTeam){ //분반 상세페이지
     const connection = await pool.getConnection(async (conn)=> conn);
-    const Query=`SELECT group_concat(distinct t.project_id) AS 'project_id',
-    group_concat(distinct m.student_name separator ',') AS 'eachMembers',
-    group_concat(distinct t.team_name) AS 'team_name',
-    group_concat(distinct t.project_name) AS 'project_name',
-    group_concat(distinct t.class_name) AS 'class_name',
-    t.good AS 'good',
-    group_concat(distinct h.hashtag_name separator ',') AS hashtag_name,
+    const Query=`SELECT t.project_id, group_concat(distinct concat(m.student_name, '(', m.class_name, ')') separator ', ') AS 'eachMembers',
+    t.team_name,t.project_name, f.thumbnail_url,
+    group_concat(distinct h.hashtag_name separator ' #') AS 'hashtag_name'
+    from team t inner join hashtag_team ht on ht.project_id=t.project_id
+        inner join member m on m.project_id=t.project_id
+        inner join hashtag h on h.hashtag_id=ht.hashtag_id
+        inner join file f on f.project_id=t.project_id where t.project_id=? group by t.project_id;`;
+    const Params=[selectTeam];
+    const [rows] = await connection.query(Query, Params);
+    connection.release();
+    return [rows];
+}
+async function refineDataDetail(selectTeam){ //팀별 상세페이지
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query= `SELECT group_concat(distinct concat(m.student_name, '(', m.class_name, ')') separator ', ') AS 'eachMembers',
+    t.team_name,
+    t.project_name,
+    t.good,
+    group_concat(distinct h.hashtag_name separator ' #') AS 'hashtag_name',
     f.video_url,f.pdf_url from team t inner join hashtag_team ht on ht.project_id=t.project_id
         inner join member m on m.project_id=t.project_id
         inner join hashtag h on h.hashtag_id=ht.hashtag_id
@@ -49,9 +61,9 @@ async function refineData(selectTeam){
     return [rows];
 }
 
-
 module.exports = {
     checkVisitor,
     classList,
-    refineData
+    refineData,
+    refineDataDetail
 }
