@@ -49,6 +49,7 @@ async function refineDataDetail(selectTeam){ //팀별 상세페이지
     const Query= `SELECT group_concat(distinct concat(m.student_name, '(', m.class_name, ')') separator ', ') AS 'eachMembers',
     t.team_name,
     t.project_name,
+    t.project_id,
     t.good,
     group_concat(distinct h.hashtag_name separator ' #') AS 'hashtag_name',
     f.video_url,f.pdf_url from team t inner join hashtag_team ht on ht.project_id=t.project_id
@@ -61,12 +62,21 @@ async function refineDataDetail(selectTeam){ //팀별 상세페이지
     return [rows];
 }
 
+
+async function getClass(project_id){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`select class_name from member where project_id=?  LIMIT 1`;
+    const Params=[project_id*1];
+    const [rows] = await connection.query(Query,Params);
+    connection.release();
+    return [rows];
+}
+
 async function plusGood(userData){
     const connection = await pool.getConnection(async (conn)=> conn);
     const project_id=userData.project_id*1;
     const Query=`Update team Set good = good + 1 Where project_id=?`;
     const Params=[project_id];
-    
     const rows=await connection.query(Query, Params);
     connection.release();
     return [rows];
@@ -85,14 +95,32 @@ async function minusGood(userData){
 
 }
 
+async function getTop50Projects(){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`SELECT row_number() over (order by good desc), GROUP_CONCAT(DISTINCT project_id) AS 'eachClass' FROM team WHERE good limit 3`;
+    const [rows] = await connection.query(Query);
+    connection.release();
+    return [rows];
+
+}
+
+async function getAllProjects(){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`SELECT GROUP_CONCAT(DISTINCT project_id) AS 'eachClass' FROM member`;
+    const [rows] = await connection.query(Query);
+    connection.release();
+    return [rows];
+
+}
+
 module.exports = {
     checkVisitor,
     classList,
     refineData,
-
     refineDataDetail,
-
+    getTop50Projects,
+    getAllProjects,
+    getClass,
     plusGood,
     minusGood
-
 }
