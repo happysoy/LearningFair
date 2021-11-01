@@ -49,52 +49,37 @@ exports.class = async function(req, res){
     const nickname = req.session.name;
     var selectClass = req.params.idx;
     console.log("분반 선택", selectClass);
-    const projectList=[];
-    const tagList=[];
-    const arrMembers=[];
-    const arrTeamTitle=[];
-    const arrTags=[];
-    const refineData =[];
-    const thumbnail_url=[];
-    const [getClass] = await indexDao.getClass(selectClass);
-    const classes = JSON.parse(JSON.stringify(getClass));
-    const arrClass = classes[0].eachClass.split(',');
-    //console.log(arrClass); class_id
-    for(var i=0; i< arrClass.length; i++){
-        const [getTeam] = await indexDao.getTeam(arrClass[i]); //팀별 이름
-        
-        const [getTeamTitle] = await indexDao.getTeamTitle(arrClass[i]);//팀명, 프로젝트이름
-        arrTeamTitle[i] = JSON.parse(JSON.stringify(getTeamTitle));
-        const [getInfo] = await indexDao.getHashtags(arrClass[i]); //팀별 해시태그
-        projectList[i] = JSON.parse(JSON.stringify(getTeam)); //학생(분반)은 여기서 처리하면 됨
-        tagList[i] = JSON.parse(JSON.stringify(getInfo));
-        arrTags[i] = tagList[i][0].hashtags.split(',');
-        arrMembers[i] = projectList[i][0].eachTeam.split(',');
-        const [thumbnail_data] = await indexDao.getDatas(arrClass[i]);
-        thumbnail_url[i]=JSON.parse(JSON.stringify(thumbnail_data));
-        refineData.push({id: projectList[i][0].project_id, team:arrTeamTitle[i][0].team_name, title:arrTeamTitle[i][0].project_name, member: arrMembers[i], tags: arrTags[i], thumbnail:thumbnail_url[i][0].thumbnail_url});
-    }
-   
-    
-        
 
-  
+    const refineList=[];
+    const resultList=[];
+    const [classList] = await indexDao.classList(selectClass); console.el
+    const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
     
-    //console.log(refineData);
-    return res.render("class.ejs",{nickname,selectClass, refineData});
+    const idList = objClass.eachClass.split(',');
+    for(var i=0; i< idList.length ; i++){
+        const [refineData] = await indexDao.refineData(idList[i]);
+        refineList[i] = JSON.parse(JSON.stringify(refineData));
+        let info = refineList[i][0];
+        console.log(info.eachMembers);
+        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, member: info.eachMembers, tags: info.hashtag_name, thumbnail: info.thumbnail_url});
+    }
+//project_id, eachMembers, team_name, project_name, class_name, good, hashtag_name, video_url, pdf_url
+    return res.render("class.ejs", {nickname, selectClass, resultList});
 }
 
 exports.team = async function(req, res){
-    const params = req.params;
-    const idx = params.idx;
     const nickname = req.session.name;
-    const arrInfo=[];
-    const arrDatas=[];
-    arrInfo.push(params.title, params.name,params.member, params.tags);
-    const [getDatas] = await indexDao.getDatas(idx);
-    arrDatas.push(JSON.parse(JSON.stringify(getDatas)));
-  
-    return res.render("team.ejs",{nickname, arrInfo, arrDatas});
+    var selectTeam = req.params.idx;
+    console.log("팀 선택", selectTeam);
+    const resultList=[];
+    const [refineData] = await indexDao.refineData(selectTeam);
+    refineList = JSON.parse(JSON.stringify(refineData));
+    console.log( refineList[0].project_id);
+    console.log( refineList[0].eachMembers);
+    const result = refineList[0];
+    //resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, member: info.eachMembers, tags: info.hashtag_name, thumbnail: info.thumbnail_url, pdf: info.pdf_url, video: info.video_url});
+
+    return res.render("team.ejs",{nickname, selectTeam,result});
 }
 
 exports.hashtag = async function (req, res){
@@ -102,7 +87,7 @@ exports.hashtag = async function (req, res){
     var selectHashtag = req.params.idx;
     console.log("해시태그 선택", selectHashtag);
 
-    const [classProjects] = await indexDao.hashtagProject(selectHashtag);
+    //const [classProjects] = await indexDao.hashtagProject(selectHashtag);
     var objLength = Object.keys(classProjects).length;
     var projectList = [];
     var memberList =[];
