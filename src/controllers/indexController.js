@@ -51,7 +51,7 @@ exports.class = async function(req, res){
 
     const refineList=[];
     const resultList=[];
-    const [classList] = await indexDao.classList(selectClass); console.el
+    const [classList] = await indexDao.classList(selectClass);
     const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
     
     const idList = objClass.eachClass.split(',');
@@ -64,13 +64,13 @@ exports.class = async function(req, res){
     }
     return res.render("class.ejs", {nickname, selectClass, resultList});
 }
+
 exports.team = async function(req, res){
     const nickname = req.session.name;
     var selectTeam = req.params.idx;
     const [refineData] = await indexDao.refineDataDetail(selectTeam);
     refineList = JSON.parse(JSON.stringify(refineData));
     const result = refineList[0];
-    console.log(result);
     return res.render("team.ejs",{nickname, selectTeam,result});
 }
 
@@ -88,27 +88,28 @@ exports.awards = async function (req, res){
     const nickname = req.session.name;
     return res.render("awards.ejs", {nickname});
 }
-
-exports.top50Project = async function (req, res){
+exports.top50Project=async function (req,res){
     const nickname = req.session.name;
-
-    const [classProjects] = await indexDao.getTop50Projects();
-    var objLength = Object.keys(classProjects).length;
-    var projectList = [];
-    var memberList =[];
-    var addList = [];
-    for(var i=0; i<objLength; i++){
-        projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
-        const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
-        var objLengthMember = Object.keys(projectMembers).length;
-        console.log(projectList);
-        for(var j=0; j<objLengthMember; j++){
-            memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
-            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id});
-        }
+    const refineList=[];
+    const resultList=[];
+    const class_=[];
+    const [classList] = await indexDao.getTop50Projects();
+    const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
+    const idList = objClass.eachClass.split(',');
+    for(var i=0; i< idList.length ; i++){
+        console.log(idList[i]);
+        const [refineData] = await indexDao.refineData(idList[i]);
+        const [className] = await indexDao.getClass(idList[i]);
+        console.log(className);
+        refineList[i] = JSON.parse(JSON.stringify(refineData));
+        class_[i]=JSON.parse(JSON.stringify(className));
+        let info = refineList[i][0];
+        let classInfo=class_[i][0];
+        console.log("인포",classInfo);
+        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, tags: info.hashtag_name, members: info.eachMembers, class:classInfo.class_name,thumbnail: info.thumbnail_url});
     }
-    
-    return res.render("top50Project.ejs", {nickname, projectList, objLength, addList});
+    console.log(resultList);
+    return res.render("top50Project.ejs", {nickname, resultList});
 }
 
 
@@ -137,8 +138,8 @@ exports.allProject = async function (req, res){
 
 
 exports.good = async function(req, res){
-    
     var userData=req.body;
+    console.log(userData);
     const loginResult = await indexDao.plusGood(userData);
     const data = {"status": 200};
     res.send(data);
