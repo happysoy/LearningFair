@@ -61,9 +61,38 @@ async function refineDataDetail(selectTeam){ //팀별 상세페이지
     return [rows];
 }
 
+async function plusGood(userData){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const project_id=userData.project_id*1;
+    const Query=`Update team Set good = good + 1 Where project_id=?`;
+    const Params=[project_id];
+    
+    const rows=await connection.query(Query, Params);
+    connection.release();
+    return [rows];
+
+}
+
+async function minusGood(userData){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const project_id=userData.project_id*1;
+    const Query=`Update team Set good = good - 1 Where project_id=?`;
+    const Params=[project_id];
+    
+    const rows=await connection.query(Query, Params);
+    connection.release();
+    return [rows];
+
+}
+
 module.exports = {
     checkVisitor,
     classList,
     refineData,
+
     refineDataDetail
+
+    plusGood,
+    minusGood
+
 }
