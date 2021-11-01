@@ -68,7 +68,6 @@ async function getClass(project_id){
     const Query=`select class_name from member where project_id=?  LIMIT 1`;
     const Params=[project_id*1];
     const [rows] = await connection.query(Query,Params);
-    console.log("rows",rows);
     connection.release();
     return [rows];
 }
@@ -78,7 +77,6 @@ async function plusGood(userData){
     const project_id=userData.project_id*1;
     const Query=`Update team Set good = good + 1 Where project_id=?`;
     const Params=[project_id];
-    console.log(userData);
     const rows=await connection.query(Query, Params);
     connection.release();
     return [rows];
@@ -106,12 +104,22 @@ async function getTop50Projects(){
 
 }
 
+async function getAllProjects(){
+    const connection = await pool.getConnection(async (conn)=> conn);
+    const Query=`SELECT GROUP_CONCAT(DISTINCT project_id) AS 'eachClass' FROM member`;
+    const [rows] = await connection.query(Query);
+    connection.release();
+    return [rows];
+
+}
+
 module.exports = {
     checkVisitor,
     classList,
     refineData,
     refineDataDetail,
     getTop50Projects,
+    getAllProjects,
     getClass,
     plusGood,
     minusGood
