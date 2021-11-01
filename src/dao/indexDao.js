@@ -90,7 +90,7 @@ module.exports = {
     classList,
     refineData,
 
-    refineDataDetail
+    refineDataDetail,
 
     plusGood,
     minusGood
