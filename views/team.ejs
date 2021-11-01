@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   
     <meta charset="utf-8">
     <meta
       name="viewport"
@@ -14,9 +15,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-    
-    
   </head>
   <body>
     <header>
@@ -28,42 +26,79 @@
       <div class="top">
         <div class="top-box">
           <div class="text_wrap">
-            <p>#<%= Object.values(team[0])[6] %></p>
-            <h1>[<%= Object.values(team[0])[2] %>] <%= Object.values(team[0])[3] %></h1>
-            <h2><%= Object.values(team[0])[1] %></h2>
+            <p><%= result.project_name %></p>
+            <h1>[ <%= result.team_name %> ] <%= %></h1>
+            <h2><%= result.eachMembers %></h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
-              <i class="like old-class"> <%= Object.values(team[0])[5] %></i>
-              <!-- <i class="xi-heart-o">\ea11</i>
-              <i class="xi-heart">\ea10</i> -->
+              <i class="like old-class"><%= result.good %></i>
+             
           </button>
         </div>
       </div>
 
 
       <div class="contents">
-          <iframe width="800" height="450" src=<%= Object.values(team[0])[7] %> frameborder="0" allowfullscreen></iframe>
-          <iframe width="800" height="600" src=<%= Object.values(team[0])[8] %> frameborder="0"></iframe>
-      </div>
+        <iframe width="800" height="450" src=<%= result.video_url %> frameborder="0" allowfullscreen></iframe>
+        <iframe width="800" height="600" src=<%= result.pdf_url %> frameborder="0"></iframe>
+    </div>
 
     </div>
 
     <footer>
       <%-include ('footer.ejs')%>
     </footer>
-
+    <script>
+       
+    </script>
     <script src="/js/confetti.js"></script>
 <script> 
       var click = 0;
       $("#button1").click(function() {
         if (!click){//조아요 +1
           click = 1;
+          console.log('<%= result.project_id %>');
           $(".like").removeClass('old-class').addClass('new-class');
-         
+          $.ajax({
+            type:'POST',
+            url:"/good",
+            dataType:'text', 
+            data: {'project_id':'<%= result.project_id %>'}
+            ,
+            error: async function(){
+                alert("에러가 발생했습니다.");
+            },
+            success:async function(data){
+                const obj = JSON.parse(data);
+                if(obj.status == 200){
+                  window.location.reload();
+                }else if(obj.status==201){
+                  alert("에러가 발생했습니다.")
+                }
+            }
+        });
         }
         else{//-1
           click = 0;
-          $(".like").removeClass('new-class').addClass('old-class')
+          $(".like").removeClass('new-class').addClass('old-class');
+          $.ajax({
+            type:'POST',
+            url:"/bad",
+            dataType:'text', 
+            data: {'project_id':'<%= result.project_id %>'}
+            ,
+            error: async function(){
+                alert("에러가 발생했습니다.");
+            },
+            success:async function(data){
+                const obj = JSON.parse(data);
+                if(obj.status == 200){
+                  window.location.reload();
+                }else if(obj.status==201){
+                  alert("에러가 발생했습니다.")
+                }
+            }
+        });
         }
 
       });
