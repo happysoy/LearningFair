@@ -77,8 +77,27 @@ exports.team = async function(req, res){
 
 exports.hashtag = async function (req, res){
 
-    return res.render("hashtagProject.ejs",{nickname});
+    const nickname = req.session.name;
+    var selectHashtag = req.params.idx;
+    const refineList=[];
+    const resultList=[];
+    const class_=[];
+    const [classList] = await indexDao.getHashtagClass(selectHashtag);
+    console.log(classList);
+    const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
+    const idList = objClass.eachClass.split(',');
+    for(var i=0; i< idList.length ; i++){
+        const [refineData] = await indexDao.refineData(idList[i]);
+        const [className] = await indexDao.getClass(idList[i]);
+        refineList[i] = JSON.parse(JSON.stringify(refineData));
+        class_[i]=JSON.parse(JSON.stringify(className));
+        let info = refineList[i][0];
+        let classInfo=class_[i][0];
+        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, tags: info.hashtag_name, members: info.eachMembers, class:classInfo.class_name,thumbnail: info.thumbnail_url});
+    }
+    return res.render("hashtagProject.ejs",{nickname,selectHashtag, resultList});
 }
+
 exports.congratulate = async function (req, res){
     const nickname = req.session.name;
     return res.render("congratulate.ejs", {nickname});
@@ -88,12 +107,14 @@ exports.awards = async function (req, res){
     const nickname = req.session.name;
     return res.render("awards.ejs", {nickname});
 }
+
 exports.top50Project=async function (req,res){
     const nickname = req.session.name;
     const refineList=[];
     const resultList=[];
     const class_=[];
     const [classList] = await indexDao.getTop50Projects();
+    console.log(classList);
     const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
     const idList = objClass.eachClass.split(',');
     for(var i=0; i< idList.length ; i++){
@@ -128,8 +149,6 @@ exports.allProject = async function (req, res){
     }
     return res.render("allProject.ejs", {nickname, resultList});
 }
-
-
 
 
 exports.good = async function(req, res){
