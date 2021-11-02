@@ -27,12 +27,17 @@
       <div class="top">
         <div class="top-box">
           <div class="text_wrap">
-            <p><%= result.project_name %></p>
-            <h1>[ <%= result.team_name %> ] <%= %></h1>
-            <h2><%= result.eachMembers %></h2>
+
+            <div style = "margin-bottom: 10px">
+              <h1 style="display:inline"><%= result.project_name %> <%= %></h1>
+            </div>
+            <div style = "margin-bottom: 15px;">
+              <p style="display: inline"><%= result.team_name %>&nbsp;</p>
+              <h2 style="display: inline">│&nbsp;<%= result.eachMembers %></h2>
+            </div>
+            <h2>#<%= result.hashtag_name %></h2>
           </div>
-          <button type="button" id="button1" onclick="toggleConfetti();">
-            
+          <button id="button1" onclick="toggleConfetti();">
               <i class="like old-class"><%= cnt %></i>
              
           </button>
@@ -40,6 +45,7 @@
       </div>
 
       <div class="contents">
+
         <iframe width="800" height="450" src=<%= result.video_url %> frameborder="0" allowfullscreen></iframe>
         <iframe width="800" height="600" src=<%= result.pdf_url %> frameborder="0"></iframe>
     </div>
@@ -53,24 +59,58 @@
        
     </script>
     <script src="/js/confetti.js"></script>
-<script>
-  
-    var getCookie = function(name) {
-      var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-      return value? value[2] : null;
-    };
-    var setCookie = function(name, value, exp) {
-      var date = new Date();
-      date.setTime(date.getTime() + exp*24*60*60*1000);
-      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-    };
+<script> 
+      var click = 0;
+      $("#button1").click(function() {
+        if (!click){//조아요 +1
+          click = 1;
+          var audio = document.getElementById("audio");
+          audio.play();
+          console.log('<%= result.project_id %>');
+          $(".like").removeClass('old-class').addClass('new-class');
+          let selectCnt = $('.like').text();
+           $('.like').text(++selectCnt);  
+          $.ajax({
+            type:'POST',
+            url:"/good",
+            dataType:'text', 
+            data: {'project_id':'<%= result.project_id %>'}
+            ,
+            error: async function(){
+                alert("에러가 발생했습니다.");
+            },
+            success:async function(data){
+                const obj = JSON.parse(data);
+                if(obj.status == 200){
+                }else if(obj.status==201){
+                  alert("에러가 발생했습니다.")
+                }
+            }
+        });
 
-    //   $(".like").removeClass('old-class').addClass('new-class'); //버튼 눌린 상태로 전환
-    //   else 
-    //     $(".like").addClass('old-class'); //버튼 안눌린 상태
-    // })
-    
+        }
+        else{//-1
+          click = 0;
+          $(".like").removeClass('new-class').addClass('old-class');
+          $.ajax({
+            type:'POST',
+            url:"/bad",
+            dataType:'text', 
+            data: {'project_id':'<%= result.project_id %>'}
+            ,
+            error: async function(){
+                alert("에러가 발생했습니다.");
+            },
+            success:async function(data){
+                const obj = JSON.parse(data);
+                if(obj.status == 200){
+                }else if(obj.status==201){
+                  alert("에러가 발생했습니다.")
+                }
+            }
+        });
 
+        }
     $("#button1").click(function() {
       if (!click){//선택
         click = 1;
@@ -123,5 +163,6 @@
       }
     });
     </script>
+     <audio id = "audio" src="/audio/confetti.mp3"></audio>
   </body>
 </html>

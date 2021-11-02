@@ -19,16 +19,14 @@
 }
 
 .content {
-  margin: 30px auto;
+  margin: 10px auto;
   width: 1140px;
-  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.content i {
-  font-weight: bold;
-  font-size: 50px;
-  text-align: center;
+.content img {
+  width: 1140px;
+  margin: 10px auto;
 }

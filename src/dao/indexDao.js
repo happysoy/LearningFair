@@ -115,8 +115,9 @@ async function getHashtagClass(hashtag_name){
         inner join hashtag_team ht on ht.project_id=t.project_id
         inner join hashtag h on h.hashtag_id=ht.hashtag_id
         where h.hashtag_name=?`;
-    const Params=[hashtag_name];
-    const [rows] = await connection.query(Query,Params);
+ 
+    const Params= String(hashtag_name);
+    const [rows] = await connection.query(Query, Params);
     connection.release();
     return [rows];
 }
