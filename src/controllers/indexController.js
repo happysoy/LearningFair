@@ -10,10 +10,11 @@ exports.loginProcess = async function(req, res){
     var userMajor = userData.department;
     var userNum = userData.studentId;
     var userName = userData.userName;
-    const check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    const ko_check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
+    const en_check = /[a-zA-Z]/;;
 
     let status = -1;
-    if(userName.length ==1 || !check.test(userName) ){//이름 잘못 입력
+    if(userName.length ==1 || ((!ko_check.test(userName) && (!en_check.test(userName)))) ){//이름 잘못 입력
         status=201;
         const data = {status};
         res.send(data);
@@ -23,13 +24,13 @@ exports.loginProcess = async function(req, res){
         const data = {status};
         res.send(data);
     }
-    else if(userMajor.length==1 || !check.test(userMajor)){ //학과 잘못 입력
+    else if(userMajor.length==1 || ((!ko_check.test(userMajor) && (!en_check.test(userMajor))))){ //학과 잘못 입력
         status=203;
         const data = {status};
         res.send(data);
     }
     else{ //로그인 성공
-        const loginResult = await indexDao.checkVisitor(userMajor, userNum, userName);
+        await indexDao.checkVisitor(userMajor, userNum, userName);
         req.session.name = userName;
         req.session.save(function(){
             const data = {"status": 200, "nickname": userName};
@@ -51,7 +52,9 @@ exports.class = async function(req, res){
 
     const refineList=[];
     const resultList=[];
+
     const [classList] = await indexDao.classList(selectClass);
+
     const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
     
     const idList = objClass.eachClass.split(',');
@@ -66,12 +69,16 @@ exports.class = async function(req, res){
 }
 
 exports.team = async function(req, res){
+    var selectTeams=[];
+    selectTeams.push(req.session.isClicked); //내가 선택한 팀들 session에 저장
     const nickname = req.session.name;
     var selectTeam = req.params.idx;
     const [refineData] = await indexDao.refineDataDetail(selectTeam);
     refineList = JSON.parse(JSON.stringify(refineData));
     const result = refineList[0];
+
     return res.render("team.ejs",{nickname, selectTeam,result});
+
 }
 
 
@@ -109,44 +116,16 @@ exports.awards = async function (req, res){
 
 exports.top50Project=async function (req,res){
     const nickname = req.session.name;
-    const refineList=[];
-    const resultList=[];
-    const class_=[];
-    const [classList] = await indexDao.getTop50Projects();
-    console.log(classList);
-    const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
-    const idList = objClass.eachClass.split(',');
-    for(var i=0; i< idList.length ; i++){
-        const [refineData] = await indexDao.refineData(idList[i]);
-        const [className] = await indexDao.getClass(idList[i]);
-        refineList[i] = JSON.parse(JSON.stringify(refineData));
-        class_[i]=JSON.parse(JSON.stringify(className));
-        let info = refineList[i][0];
-        let classInfo=class_[i][0];
-        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, tags: info.hashtag_name, members: info.eachMembers, class:classInfo.class_name,thumbnail: info.thumbnail_url});
-    }
-    return res.render("top50Project.ejs", {nickname, resultList});
+    return res.render("top50Project.ejs", {nickname});
+
 }
 
 
 exports.allProject = async function (req, res){
     const nickname = req.session.name;
-    const refineList=[];
-    const resultList=[];
-    const class_=[];
-    const [classList] = await indexDao.getAllProjects();
-    const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
-    const idList = objClass.eachClass.split(',');
-    for(var i=0; i< idList.length ; i++){
-        const [refineData] = await indexDao.refineData(idList[i]);
-        const [className] = await indexDao.getClass(idList[i]);
-        refineList[i] = JSON.parse(JSON.stringify(refineData));
-        class_[i]=JSON.parse(JSON.stringify(className));
-        let info = refineList[i][0];
-        let classInfo=class_[i][0];
-        resultList.push({id: info.project_id, team: info.team_name, title:info.project_name, tags: info.hashtag_name, members: info.eachMembers, class:classInfo.class_name,thumbnail: info.thumbnail_url});
-    }
-    return res.render("allProject.ejs", {nickname, resultList});
+    
+    return res.render("allProject.ejs", {nickname});
+
 }
 
 
@@ -156,13 +135,13 @@ exports.good = async function(req, res){
     const loginResult = await indexDao.plusGood(userData);
     const data = {"status": 200};
     res.send(data);
+
 }
 
 
 exports.bad = async function(req, res){
-    
     var userData=req.body;
-    const loginResult = await indexDao.minusGood(userData);
+    await indexDao.minusGood(userData);
     const data = {"status": 200};
     res.send(data);
 }

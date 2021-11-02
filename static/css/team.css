@@ -1,5 +1,5 @@
 .top {
-  width: 1140px;
+  width: 800px;
   height: 160px;
   margin: 0 auto;
   border-bottom: 1px solid rgb(0, 0, 0, 0.1);
@@ -7,6 +7,7 @@
 
 .top-box {
   height: 145px;
+  width: 800px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -45,7 +46,6 @@ button:hover {
 
 .old-class:before {
   content: "\ea11";
-  font-family: "xeicon";
 }
 
 .new-class:before {

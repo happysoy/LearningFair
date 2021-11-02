@@ -165,7 +165,7 @@ footer {
   position: relative;
   display: flex;
   height: 130px;
-  width: 1200px;
+  width: 0px;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
