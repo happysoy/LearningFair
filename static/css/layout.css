@@ -33,7 +33,7 @@ header {
 .hd {
   position: relative;
   display: flex;
-  height: 100px;
+  height: 110px;
   width: 1140px;
   margin: 0 auto;
   justify-content: space-between;
@@ -41,7 +41,7 @@ header {
 }
 
 .logo img {
-  height: 80px;
+  height: 100px;
 }
 
 .header .logo {
@@ -49,7 +49,7 @@ header {
 }
 
 .welcome span {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .welcome .name {
@@ -58,7 +58,7 @@ header {
 }
 
 .category_wrap ul.category {
-  width: 380px;
+  width: 400px;
   display: flex;
   justify-content: space-between;
 }
@@ -67,14 +67,14 @@ header {
   /* position: absolute; */
   /* float: left; */
   /* margin: 0 0 0 34px; */
-  height: 100px;
+  height: 110px;
   transition: all 0.3s ease 0s;
   display: flex;
   align-items: center;
 }
 
 .category_wrap .cate a.title {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: 0px;
   color: #545454;
@@ -84,20 +84,29 @@ header {
 .category li a.title {
   transition: all 0.3s ease 0s;
 }
+/*  */
+.category li a#cong:hover,
+.category li.cate:hover a#cong {
+  color: #5a92f7;
+}
 
-.category li a.title:hover,
-.category li.cate:hover a.title {
+.category li a#class:hover,
+.category li.cate:hover a#class {
   color: #8dc63f;
+}
+
+.category li a#award:hover,
+.category li.cate:hover a#award {
+  color: #a644f6;
 }
 
 .category li a:hover {
   color: #8dc63f;
-  font-weight: bold;
 }
 
 .nav-section {
   position: absolute;
-  top: 100px;
+  top: 110px;
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
@@ -122,8 +131,8 @@ header {
 
 .category li#cate-nav:hover,
 .category .nav-box:hover li#cate-nav {
-  height: 96px;
-  border-bottom: 4px solid #8dc63f;
+  height: 107px;
+  border-bottom: 3px solid #8dc63f;
 }
 
 .category .nav-box ul {

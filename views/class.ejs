@@ -28,7 +28,7 @@
       </div>
 
       <div class="project_wrap">
-         
+        
         <% projectList.forEach(function(list, index){ %>
           <a href="/team/<%= selectClass %>/<%= index+1 %>">
             <div class="project_box">
@@ -36,21 +36,23 @@
                 <img src="/img/1.png" alt="" />
               </div>
               <div class="project_con">
+                <div class="hashtag_wrap">
+                  <% add2List.forEach(list2name => { %>
+                    <% if (list2name.project_id == index+1) { %>
+                      <span>#<%= list2name.hashtag %></span>
+                    <% } %>
+                  <% }) %>
+                </div> 
                 <div class="project_text">
-                 <h1>[<%= list.team_name %>] <%= list.project_name %></h1>
+                 <h1><%= list.project_name %></h1>
+                 <h2>[<%= list.team_name %>]</h2>
                  <% addList.forEach(listname => { %>
                   <% if (listname.project_id == index+1) { %>
                     <span><%= listname.name %></span>
                   <% } %>
                   <% }) %>
                 </div>
-                <div class="hashtag_wrap">
-                  <% add2List.forEach(list2name => { %>
-                    <% if (list2name.project_id == index+1) { %>
-                      <span>#<%= list2name.hashtag %></span>
-                    <% } %>
-                <% }) %>
-                </div>      
+                     
               </div>
             </div>
             </a>

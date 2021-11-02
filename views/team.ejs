@@ -13,9 +13,6 @@
     <title>Team</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-    
     
   </head>
   <body>
@@ -41,8 +38,8 @@
       </div>
 
       <div class="contents">
-          <iframe width="800" height="450" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/1/1/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.mp4" frameborder="0" allowfullscreen></iframe>
-          <iframe width="800" height="600" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/1/1/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.pdf" frameborder="0"></iframe>
+          <iframe width="800" height="450" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/I1/cmd/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.mp4" frameborder="0" allowfullscreen></iframe>
+          <iframe width="800" height="600" src="https://lfproject.s3.ap-northeast-2.amazonaws.com/I1/cmd/03%E1%84%87%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AB_20%E1%84%8C%E1%85%A9.pdf" frameborder="0"></iframe>
       </div>
 
     </div>
@@ -58,10 +55,12 @@
         if (!click){
           click = 1;
           $(".like").removeClass('old-class').addClass('new-class');
+          //1더하기
         }
         else{
           click = 0;
           $(".like").removeClass('new-class').addClass('old-class')
+          //1빼기
         }
 
       });
