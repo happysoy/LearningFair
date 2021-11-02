@@ -27,9 +27,13 @@
       <div class="top">
         <div class="top-box">
           <div class="text_wrap">
-            <p><%= result.team_name %></p>
-            <h1>[ <%= result.project_name %> ] <%= %></h1>
-            <h2><%= result.eachMembers %></h2>
+            <div style = "margin-bottom: 10px">
+              <h1 style="display:inline"><%= result.project_name %> <%= %></h1>
+            </div>
+            <div style = "margin-bottom: 15px;">
+              <p style="display: inline"><%= result.team_name %>&nbsp;</p>
+              <h2 style="display: inline">│&nbsp;<%= result.eachMembers %></h2>
+            </div>
             <h2>#<%= result.hashtag_name %></h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
