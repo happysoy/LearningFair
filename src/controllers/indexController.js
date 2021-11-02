@@ -42,7 +42,6 @@ exports.loginProcess = async function(req, res){
 
 exports.main = async function (req, res){
     const nickname = req.session.name;
-    console.log("login name", nickname);
     return res.render("main.ejs", {nickname});
 }
 
@@ -131,8 +130,7 @@ exports.allProject = async function (req, res){
 
 exports.good = async function(req, res){
     var userData=req.body;
-    console.log(userData);
-    const loginResult = await indexDao.plusGood(userData);
+    await indexDao.plusGood(userData);
     const data = {"status": 200};
     res.send(data);
 

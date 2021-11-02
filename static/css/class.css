@@ -78,8 +78,8 @@
 
 .project_text h1 {
   padding-top: 12px;
- 
-  font-size: 12px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .project_text h2 {

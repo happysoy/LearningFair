@@ -19,7 +19,7 @@
   <body>
     <% let cnt = result.good %>
     <header>
-    <%-include ('header.ejs')%>
+      <%-include ('header.ejs')%>
     </header>
 
     <div class="body">
@@ -27,14 +27,9 @@
       <div class="top">
         <div class="top-box">
           <div class="text_wrap">
-
-            <div style = "margin-bottom: 10px">
-              <h1 style="display:inline"><%= result.project_name %> <%= %></h1>
-            </div>
-            <div style = "margin-bottom: 15px;">
-              <p style="display: inline"><%= result.team_name %>&nbsp;</p>
-              <h2 style="display: inline">│&nbsp;<%= result.eachMembers %></h2>
-            </div>
+            <p><%= result.team_name %></p>
+            <h1>[ <%= result.project_name %> ] <%= %></h1>
+            <h2><%= result.eachMembers %></h2>
             <h2>#<%= result.hashtag_name %></h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
@@ -43,6 +38,7 @@
           </button>
         </div>
       </div>
+
 
       <div class="contents">
 
@@ -87,7 +83,6 @@
                 }
             }
         });
-
         }
         else{//-1
           click = 0;
@@ -109,59 +104,8 @@
                 }
             }
         });
-
         }
-    $("#button1").click(function() {
-      if (!click){//선택
-        click = 1;
-        $(".like").removeClass('old-class').addClass('new-class'); //버튼 눌린 상태로 전환
-        let selectCnt = $('.like').text();
-        $('.like').text(++selectCnt);  
-        $.ajax({
-          type:'POST',
-          url:"/good",
-          dataType:'text', 
-          data: {'project_id':'<%= result.project_id %>'},
-          error: async function(){
-              alert("에러가 발생했습니다.");
-          },
-          success:async function(data){
-              const obj = JSON.parse(data);
-              if(obj.status == 200){
-                setCookie("expend", "true", 1);
-
-              }
-              else{
-                alert("에러가 발생했습니다.")
-              }
-          }
       });
-      }
-      else{//취소
-        click = 0;
-        $(".like").removeClass('new-class').addClass('old-class'); //버튼 안눌린 상태로 전환
-        let selectCnt = $('.like').text();
-        $('.like').text(--selectCnt);  
-        $.ajax({
-          type:'POST',
-          url:"/bad",
-          dataType:'text', 
-          data: {'project_id':'<%= result.project_id %>'},
-          error: async function(){
-              alert("에러가 발생했습니다.");
-          },
-          success:async function(data){
-              const obj = JSON.parse(data);
-              if(obj.status == 200){
-                setCookie("expend", "false", 1);
-              }
-              else{
-                alert("에러가 발생했습니다.")
-              }
-          }
-      });
-      }
-    });
     </script>
      <audio id = "audio" src="/audio/confetti.mp3"></audio>
   </body>
