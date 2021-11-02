@@ -25,6 +25,8 @@
 }
 
 .project_wrap {
+  width: 1140px;
+  margin: 0 auto;
   display: flex;
   width: 1140px;
   margin: 0 auto;
@@ -34,6 +36,7 @@
 }
 
 .project_box {
+
   width: 320px;
   height: 350px;
   background: #ffffff;
@@ -42,19 +45,25 @@
   box-sizing: border-box;
   box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+
   align-items: center;
+
   overflow: hidden;
 }
 
 .thumbnail {
+
   height: 180px;
   width: 320px;
+
   overflow: hidden;
 }
 
 .thumbnail img {
+
   height: 180px;
   width: 320px;
+
   object-fit: cover;
 }
 
@@ -70,6 +79,7 @@
 }
 
 .project_text {
+
   height: 130px;
   width: 290px;
   margin-left: 15px;
@@ -93,11 +103,13 @@
   font-size: 8px;
   color: gray;
 }
-.hashtag_wrap{
+.hashtag_wrap {
   margin-left: 15px;
 }
+
 .hashtag_wrap p{
   display:inline;
   font-size: 14px;
   color: gray;
 }
+

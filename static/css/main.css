@@ -55,7 +55,7 @@
 }
 
 .selection-box {
-  margin: 100px auto 20px;
+  margin: 70px auto 20px;
 }
 
 .text-contain h1 {
@@ -81,7 +81,7 @@
 #wordCloud {
   width: 800px;
   height: 500px;
-  margin: 50px auto;
+  margin: 30px auto;
   transition: all 0.3s;
 }
 
