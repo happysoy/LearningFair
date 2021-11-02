@@ -45,6 +45,7 @@ button:hover {
 
 .old-class:before {
   content: "\ea11";
+  font-family: "xeicon";
 }
 
 .new-class:before {
