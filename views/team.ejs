@@ -17,8 +17,9 @@
 
   </head>
   <body>
+    <% let cnt = result.good %>
     <header>
-      <%-include ('header.ejs')%>
+    <%-include ('header.ejs')%>
     </header>
 
     <div class="body">
@@ -26,18 +27,17 @@
       <div class="top">
         <div class="top-box">
           <div class="text_wrap">
-            <p><%= result.team_name %></p>
-            <h1>[ <%= result.project_name %> ] <%= %></h1>
+            <p><%= result.project_name %></p>
+            <h1>[ <%= result.team_name %> ] <%= %></h1>
             <h2><%= result.eachMembers %></h2>
-            <h2>#<%= result.hashtag_name %></h2>
           </div>
-          <button id="button1" onclick="toggleConfetti();">
-              <i class="like old-class"><%= result.good %></i>
+          <button type="button" id="button1" onclick="toggleConfetti();">
+            
+              <i class="like old-class"><%= cnt %></i>
              
           </button>
         </div>
       </div>
-
 
       <div class="contents">
         <iframe width="800" height="450" src=<%= result.video_url %> frameborder="0" allowfullscreen></iframe>
@@ -53,56 +53,75 @@
        
     </script>
     <script src="/js/confetti.js"></script>
-<script> 
-      var click = 0;
-      $("#button1").click(function() {
-        if (!click){//조아요 +1
-          click = 1;
-          console.log('<%= result.project_id %>');
-          $(".like").removeClass('old-class').addClass('new-class');
-          $.ajax({
-            type:'POST',
-            url:"/good",
-            dataType:'text', 
-            data: {'project_id':'<%= result.project_id %>'}
-            ,
-            error: async function(){
-                alert("에러가 발생했습니다.");
-            },
-            success:async function(data){
-                const obj = JSON.parse(data);
-                if(obj.status == 200){
-                  window.location.reload();
-                }else if(obj.status==201){
-                  alert("에러가 발생했습니다.")
-                }
-            }
-        });
-        }
-        else{//-1
-          click = 0;
-          $(".like").removeClass('new-class').addClass('old-class');
-          $.ajax({
-            type:'POST',
-            url:"/bad",
-            dataType:'text', 
-            data: {'project_id':'<%= result.project_id %>'}
-            ,
-            error: async function(){
-                alert("에러가 발생했습니다.");
-            },
-            success:async function(data){
-                const obj = JSON.parse(data);
-                if(obj.status == 200){
-                  window.location.reload();
-                }else if(obj.status==201){
-                  alert("에러가 발생했습니다.")
-                }
-            }
-        });
-        }
+<script>
+  
+    var getCookie = function(name) {
+      var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+      return value? value[2] : null;
+    };
+    var setCookie = function(name, value, exp) {
+      var date = new Date();
+      date.setTime(date.getTime() + exp*24*60*60*1000);
+      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
 
+    //   $(".like").removeClass('old-class').addClass('new-class'); //버튼 눌린 상태로 전환
+    //   else 
+    //     $(".like").addClass('old-class'); //버튼 안눌린 상태
+    // })
+    
+
+    $("#button1").click(function() {
+      if (!click){//선택
+        click = 1;
+        $(".like").removeClass('old-class').addClass('new-class'); //버튼 눌린 상태로 전환
+        let selectCnt = $('.like').text();
+        $('.like').text(++selectCnt);  
+        $.ajax({
+          type:'POST',
+          url:"/good",
+          dataType:'text', 
+          data: {'project_id':'<%= result.project_id %>'},
+          error: async function(){
+              alert("에러가 발생했습니다.");
+          },
+          success:async function(data){
+              const obj = JSON.parse(data);
+              if(obj.status == 200){
+                setCookie("expend", "true", 1);
+
+              }
+              else{
+                alert("에러가 발생했습니다.")
+              }
+          }
       });
+      }
+      else{//취소
+        click = 0;
+        $(".like").removeClass('new-class').addClass('old-class'); //버튼 안눌린 상태로 전환
+        let selectCnt = $('.like').text();
+        $('.like').text(--selectCnt);  
+        $.ajax({
+          type:'POST',
+          url:"/bad",
+          dataType:'text', 
+          data: {'project_id':'<%= result.project_id %>'},
+          error: async function(){
+              alert("에러가 발생했습니다.");
+          },
+          success:async function(data){
+              const obj = JSON.parse(data);
+              if(obj.status == 200){
+                setCookie("expend", "false", 1);
+              }
+              else{
+                alert("에러가 발생했습니다.")
+              }
+          }
+      });
+      }
+    });
     </script>
   </body>
 </html>

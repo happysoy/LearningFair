@@ -30,7 +30,7 @@ exports.loginProcess = async function(req, res){
         res.send(data);
     }
     else{ //로그인 성공
-        const loginResult = await indexDao.checkVisitor(userMajor, userNum, userName);
+        await indexDao.checkVisitor(userMajor, userNum, userName);
         req.session.name = userName;
         req.session.save(function(){
             const data = {"status": 200, "nickname": userName};
@@ -52,7 +52,7 @@ exports.class = async function(req, res){
 
     const refineList=[];
     const resultList=[];
-    const [classList] = await indexDao.classList(selectClass); console.el
+    const [classList] = await indexDao.classList(selectClass); 
     const objClass = JSON.parse(JSON.stringify(classList[0])); // parse 와 stringify 둘 중 하나로
     
     const idList = objClass.eachClass.split(',');
@@ -66,12 +66,15 @@ exports.class = async function(req, res){
     return res.render("class.ejs", {nickname, selectClass, resultList});
 }
 exports.team = async function(req, res){
+    var selectTeams=[];
+    selectTeams.push(req.session.isClicked); //내가 선택한 팀들 session에 저장
     const nickname = req.session.name;
     var selectTeam = req.params.idx;
     const [refineData] = await indexDao.refineDataDetail(selectTeam);
     refineList = JSON.parse(JSON.stringify(refineData));
     const result = refineList[0];
-    return res.render("team.ejs",{nickname, selectTeam,result});
+    console.log("야야랴ㅑ량", selectTeams);
+    return res.render("team.ejs",{nickname, selectTeam,result, selectTeams});
 }
 
 
@@ -92,63 +95,34 @@ exports.awards = async function (req, res){
 exports.top50Project = async function (req, res){
     const nickname = req.session.name;
 
-    const [classProjects] = await indexDao.getTop50Projects();
-    var objLength = Object.keys(classProjects).length;
-    var projectList = [];
-    var memberList =[];
-    var addList = [];
-    for(var i=0; i<objLength; i++){
-        projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
-        const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
-        var objLengthMember = Object.keys(projectMembers).length;
-        console.log(projectList);
-        for(var j=0; j<objLengthMember; j++){
-            memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
-            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id});
-        }
-    }
-    
-    return res.render("top50Project.ejs", {nickname, projectList, objLength, addList});
+    return res.render("top50Project.ejs", {nickname});
 }
 
 
 exports.allProject = async function (req, res){
     const nickname = req.session.name;
-
-    const [classProjects] = await indexDao.getAllProjects();
-    var objLength = Object.keys(classProjects).length;
-    var projectList = [];
-    var memberList =[];
-    var addList = [];
-    for(var i=0; i<objLength; i++){
-        projectList[i] = JSON.parse(JSON.stringify(classProjects))[i];
-        const [projectMembers] = await indexDao.classTeam(projectList[i].project_id);
-        var objLengthMember = Object.keys(projectMembers).length;
-        for(var j=0; j<objLengthMember; j++){
-            memberList[j] = JSON.parse(JSON.stringify(projectMembers))[j];
-            addList.push({name: memberList[j].student_name, project_id: projectList[i].project_id});
-        }
-    }
     
-    return res.render("allProject.ejs", {nickname, projectList, objLength, addList});
+    return res.render("allProject.ejs", {nickname});
 }
 
 
-
-
 exports.good = async function(req, res){
-    
     var userData=req.body;
-    const loginResult = await indexDao.plusGood(userData);
-    const data = {"status": 200};
-    res.send(data);
+    var refineList = JSON.parse(JSON.stringify(userData));
+    var idx = refineList.project_id;
+    await indexDao.plusGood(userData);
+    req.session.isClicked = idx;
+    req.session.save(function(){
+        const data = {"status": 200,"isClicked": refineList.project_id};
+        res.send(data)
+    });
+    
 }
 
 
 exports.bad = async function(req, res){
-    
     var userData=req.body;
-    const loginResult = await indexDao.minusGood(userData);
+    await indexDao.minusGood(userData);
     const data = {"status": 200};
     res.send(data);
 }
