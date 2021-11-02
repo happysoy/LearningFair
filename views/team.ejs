@@ -17,6 +17,7 @@
 
   </head>
   <body>
+    <% let cnt = result.good %>
     <header>
       <%-include ('header.ejs')%>
     </header>
@@ -32,7 +33,7 @@
             <h2>#<%= result.hashtag_name %></h2>
           </div>
           <button id="button1" onclick="toggleConfetti();">
-              <i class="like old-class"><%= result.good %></i>
+              <i class="like old-class"><%= cnt %></i>
              
           </button>
         </div>
@@ -59,8 +60,12 @@
       $("#button1").click(function() {
         if (!click){//조아요 +1
           click = 1;
+          var audio = document.getElementById("audio");
+          audio.play();
           console.log('<%= result.project_id %>');
           $(".like").removeClass('old-class').addClass('new-class');
+          let selectCnt = $('.like').text();
+           $('.like').text(++selectCnt);  
           $.ajax({
             type:'POST',
             url:"/good",
@@ -73,7 +78,6 @@
             success:async function(data){
                 const obj = JSON.parse(data);
                 if(obj.status == 200){
-                  window.location.reload();
                 }else if(obj.status==201){
                   alert("에러가 발생했습니다.")
                 }
@@ -96,7 +100,6 @@
             success:async function(data){
                 const obj = JSON.parse(data);
                 if(obj.status == 200){
-                  window.location.reload();
                 }else if(obj.status==201){
                   alert("에러가 발생했습니다.")
                 }
@@ -107,5 +110,6 @@
 
       });
     </script>
+     <audio id = "audio" src="/audio/confetti.mp3"></audio>
   </body>
 </html>
