@@ -97,7 +97,6 @@ exports.hashtag = async function (req, res){
     }
     return res.render("hashtagProject.ejs",{nickname,selectHashtag, resultList});
 }
-
 exports.congratulate = async function (req, res){
     const nickname = req.session.name;
     return res.render("congratulate.ejs", {nickname});

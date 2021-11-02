@@ -1,4 +1,108 @@
+/*left-right version*/
 .top {
+  height: 180px;
+  width: 1140px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 auto;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.text-contain {
+  margin: 30px 0;
+}
+
+.text-contain h1 {
+  font-weight: bold;
+  font-size: 38px;
+  text-align: center;
+}
+
+.text-contain h2 {
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
+.project_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.project_box {
+  width: 530px;
+  height: 180px;
+  background: #ffffff;
+  margin: 15px;
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.thumbnail {
+  height:180px;
+  width: 240px;
+  overflow: hidden;
+}
+
+.thumbnail img {
+  height:180px;
+  width: 240px;
+  object-fit: cover;
+}
+
+.project_box:hover .thumbnail img {
+  transition: transform 1s;
+  filter: brightness(80%);
+}
+
+.project_box:hover h1 {
+  text-decoration-line: underline;
+}
+
+.project_text {
+
+  height: 130px;
+  width: 280px;
+  margin-left: 15px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project_text h1 {
+  padding-top: 12px;
+ 
+  font-size: 12px;
+}
+
+.project_text h2 {
+  font-size: 8px;
+  margin-top: 5px;
+}
+
+.project_text p {
+  font-size: 8px;
+  color: gray;
+}
+.hashtag_wrap {
+  margin-left: 15px;
+}
+
+.hashtag_wrap p{
+  display:inline;
+  font-size: 8px;
+  color: gray;
+} 
+
+/*top-bottom version*/
+/* .top {
   height: 180px;
   width: 1140px;
   display: flex;
@@ -68,13 +172,11 @@
 }
 
 .project_box:hover .thumbnail img {
-  /* transform: scale(1.1); */
   transition: transform 1s;
   filter: brightness(80%);
 }
 
 .project_box:hover h1 {
-  /* color: #8dc63f; */
   text-decoration-line: underline;
 }
 
@@ -83,7 +185,6 @@
   height: 130px;
   width: 290px;
   margin-left: 15px;
-  /* display: flex; */
   flex-direction: column;
   justify-content: space-between;
 }
@@ -111,5 +212,4 @@
   display:inline;
   font-size: 14px;
   color: gray;
-}
-
+} */

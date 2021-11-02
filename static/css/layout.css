@@ -64,9 +64,6 @@ header {
 }
 
 .category_wrap ul li.cate {
-  /* position: absolute; */
-  /* float: left; */
-  /* margin: 0 0 0 34px; */
   height: 110px;
   transition: all 0.3s ease 0s;
   display: flex;
@@ -84,7 +81,6 @@ header {
 .category li a.title {
   transition: all 0.3s ease 0s;
 }
-/*  */
 .category li a#cong:hover,
 .category li.cate:hover a#cong {
   color: #5a92f7;
@@ -136,10 +132,8 @@ header {
 }
 
 .category .nav-box ul {
-  /* width: 162px; */
   height: 200;
   border-right: 1px solid rgb(0, 0, 0, 0.1);
-  /* flex-grow: 1; */
   flex: 14%;
 }
 

@@ -29,12 +29,13 @@
       </div>
 
       <div class="project_wrap">
+         <% resultList.forEach(element => { %>
+          <a href="/team/<%= selectClass%>/<%= element.id %>">
             <div class="project_box">
               <div class="thumbnail">
                 <img src="<%= element.thumbnail %>" alt="" />
               </div>
               <div class="project_con">
-
                 <div class="project_text" id="project_text">
                   <h1><%= element.title %></h1>
                   <h2>[<%= element.team %>]</h2>
@@ -60,7 +61,6 @@
     </footer>
     <script>
     
-
     </script>
   </body>
 </html>
