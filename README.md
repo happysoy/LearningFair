@@ -1,2 +1,2 @@
-# LearningFair
-2021_SKKU_LearningFair
+# LearningFair_Web
+2021_SKKU_LearningFair_웹사이트제작
