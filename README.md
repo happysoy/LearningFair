@@ -1,4 +1,4 @@
-# 2021_SKKU_LearningFair_웹사이트 제작 및 배포
+# 2021_SKKU_LearningFair
 
 
-### 웹사이트제작
+### 웹사이트 제작 및 배포
